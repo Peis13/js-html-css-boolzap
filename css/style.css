@@ -6,7 +6,15 @@
 }
 /* FINE RESET */
 
-/* REGOLE STILI GENERALI */
+/* REGOLE STILI GENERALI LAYOUT */
+ul {
+  list-style-type: none;
+}
+
+img {
+  width: 100%;
+}
+
 .wrapper-gradient {
   width: 100%;
   height: 100vh;
@@ -15,12 +23,78 @@
      #009688 20%, #dbdbd3 20%);
 }
 
-.window {
-  max-width: 1000px;
+.finestra-principale {
+  width: 80%;
   min-width: 900px;
   height: 100%;
   margin: auto;
-  background-color: red;
-  border: 15px solid black;
+  display: flex;
+  /* border: 15px solid black; */
+  /* background-color: red; */
 }
-/* FINE REGOLE STILI GENERALI */
+
+[class*="lato-"] {
+  height: 100%;
+  background-color: #eaeaea;
+}
+
+.lato-contatti {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 30%;
+  background-color: blue;
+}
+
+.lato-chat {
+  flex-basis: 70%;
+  background-color: green;
+}
+
+[class*="intestazione-"] {
+  width: 100%;
+  height: 70px;
+  background-color: #eaeaea;
+}
+/* FINE REGOLE STILI GENERALI LAYOUT */
+
+/* LATO-CONTATTI */
+.intestazione-contatti {
+  border-right: 1px solid lightgray;
+}
+
+.notifiche {
+  height: 80px;
+  background-color: #8edafc;
+}
+
+/* Contatti */
+.contatti {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  max-height: calc(100% - 70px - 80px); /* NOTE: Altezza massima (100% del lato-contatti - intestazione - notifiche) */
+  background-color: yellow;
+}
+
+.ricerca {
+  flex-basis: 50px;
+  background-color: red;
+}
+
+.lista-contatti {
+  max-height: calc(100% - 50px);
+  flex-grow: 1;
+  overflow: auto;
+  background-color: purple;
+}
+
+.contatto {
+  height: 100px;
+  background-color: coral;
+  border: 2px solid black;
+}
+/* Fine Contatti */
+/* FINE LATO-CONTATTI */
+
+/* LATO-CHAT */
+/* FINE LATO-CHAT */
