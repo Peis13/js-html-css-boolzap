@@ -80,16 +80,20 @@ i {
   align-items: center;
 }
 
-/* Contatto-intestazione */
-[class*="intestazione-"] .contatto {
+/* Contatto */
+.contatto {
   height: 100%;
   display: flex;
   align-items: center;
 }
 
-[class*="intestazione-"] .avatar {
+.avatar {
   height: 100%;
   margin-right: 20px;
+}
+
+.nome-contatto {
+  text-transform: capitalize;
 }
 
 [class*="info-"] {
@@ -97,9 +101,9 @@ i {
 }
 
 [class*="intestazione-"] .info-contatto {
-  font-size: 13px;
+  font-size: 12px;
 }
-/* Fine Contatto-intestazione */
+/* Fine Contatto */
 
 /* Menù-intestazione */
 [class*="intestazione-"] > .menu {
@@ -124,7 +128,7 @@ i {
 /* Notifiche */
 .notifiche {
   height: 80px;
-  padding: 15px;
+  padding: 10px 20px;
   background-color: #8edafc;
   display: flex;
   align-items: center;
@@ -152,7 +156,7 @@ i {
   background-color: yellow;
 }
 
-/* Ricerca */
+/* ricerca contatti */
 .ricerca {
   flex-basis: 50px;
   padding: 8px;
@@ -177,34 +181,82 @@ i {
   height: auto;
   margin-right: 20px;
 }
-/* Fine Ricerca */
+/* fine ricerca contatti */
 
+/* lista contatti */
 .lista-contatti {
   max-height: calc(100% - 50px);
   flex-grow: 1;
   overflow: auto;
-  background-color: purple;
+  background-color: #fafafa;
 }
 
 .lista-contatti > .contatto {
-  height: 100px;
-  background-color: coral;
-  border: 2px solid black;
+  height: 80px;
+  padding: 10px 20px;
+  background-color: #fff;
+  position: relative;
 }
+
+.lista-contatti .info-contatto {
+  font-size: 13px;
+}
+
+.lista-contatti > .contatto .orario {
+  font-size: 11px;
+  color: lightgray;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+/* fine lista contatti */
 /* Fine Contatti */
 /* FINE LATO-CONTATTI */
 
 /* LATO-CHAT */
+/* Chat */
 .chat {
   height: calc(100% - 70px - 70px); /* NOTE: Altezza (100% del lato-chat - intestazione - toolbar) */
   background-image: url(../img/mine.jpg);
 }
+/* Fine Chat */
 
+/* Toolbar */
 .toolbar {
   width: 100%;
   min-height: 70px;
+  padding: 10px 30px;
   position: absolute;
   bottom: 0;
   background-color: #f3eeea;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
+
+.toolbar i{
+  color: #6b7376;
+  font-size: 25px;
+}
+
+.input-messaggio {
+  flex-basis: 80%;
+}
+
+.input-messaggio input {
+  width: 100%;
+  height: 50px;
+  padding: 0 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+.invio-messaggio {
+  display: none;
+}
+
+.invio-messaggio.active {
+  display: block;
+}
+/* Fine Toolbar */
 /* FINE LATO-CHAT */
