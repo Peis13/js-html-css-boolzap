@@ -20,8 +20,7 @@ ul {
   list-style-type: none;
 }
 
-img,
-i {
+img {
   height: 100%;
   border-radius: 50%;
   vertical-align: middle;
@@ -110,10 +109,16 @@ i {
   font-size: 1.3em;
 }
 
-[class*="intestazione-"] > .menu li {
-  margin: 0 8px;
+.elemento-menu {
+  padding: 0 8px;
   color: #b1b1b1;
   display: inline-block;
+}
+
+.elemento-menu:hover {
+  color: #888888;
+  transform: scale(1.1);
+  cursor: pointer;
 }
 /* Fine Menù-intestazione */
 /* Fine Intestazioni */
@@ -134,12 +139,20 @@ i {
   align-items: center;
 }
 
-.notifiche i {
-  font-size: 22px;
-  padding: 15px;
+.miniatura {
+  min-width: 50px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
   margin-right: 10px;
-  color: #8edafc;
+  border-radius: 50%;
   background-color: #fff;
+}
+
+.notifiche i {
+  color: #8edafc;
+  font-size: 22px;
+  vertical-align: middle;
 }
 
 .info-notifiche {
@@ -178,8 +191,8 @@ i {
 }
 
 .ricerca .input i {
-  height: auto;
   margin-right: 20px;
+  color: #b6b9bb;
 }
 /* fine ricerca contatti */
 
@@ -196,6 +209,11 @@ i {
   padding: 10px 20px;
   background-color: #fff;
   position: relative;
+}
+
+.lista-contatti > .contatto:hover {
+  cursor: pointer;
+  background-color: #e9ebeb;
 }
 
 .lista-contatti .info-contatto {
@@ -223,6 +241,7 @@ i {
 }
 .chat {
   padding-top: 50px;
+  overflow-y: auto;
   height: calc(100% - 70px - 70px); /* NOTE: Altezza (100% del lato-chat - intestazione - toolbar) */
   background-image: url(../img/mine.jpg);
 }
@@ -241,9 +260,15 @@ i {
   align-items: center;
 }
 
-.toolbar i{
+.toolbar i {
   color: #6b7376;
   font-size: 25px;
+}
+
+.toolbar i:hover {
+  color: #a7acae;
+  transform: scale(1.1);
+  cursor: pointer;
 }
 
 .input-messaggio {
@@ -258,11 +283,11 @@ i {
   border-radius: 5px;
 }
 
-.invio-messaggio {
+[class*="invio-"] {
   display: none;
 }
 
-.invio-messaggio.active {
+[class*="invio-"].active {
   display: block;
 }
 /* Fine Toolbar */
@@ -277,7 +302,7 @@ i {
 .messaggio {
   width: 80%;
   color: #000;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
 }
 
 .messaggio .box {
@@ -304,7 +329,6 @@ i {
 /* NOTE: messaggio inviato */
 .messaggio.inviato {
   text-align: right;
-  margin: 20px 0;
   margin-left: auto;
 }
 
