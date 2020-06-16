@@ -215,7 +215,14 @@ i {
 
 /* LATO-CHAT */
 /* Chat */
+.container {
+  width: 80%;
+  height: 100%;
+  margin: auto;
+  /* background: red; */
+}
 .chat {
+  padding-top: 50px;
   height: calc(100% - 70px - 70px); /* NOTE: Altezza (100% del lato-chat - intestazione - toolbar) */
   background-image: url(../img/mine.jpg);
 }
@@ -260,3 +267,56 @@ i {
 }
 /* Fine Toolbar */
 /* FINE LATO-CHAT */
+
+/* TEMPLATE */
+.template {
+  display: none;
+}
+
+/* Messaggio */
+.messaggio {
+  width: 80%;
+  color: #000;
+  margin-bottom: 5px;
+}
+
+.messaggio .box {
+  display: inline-block;
+  border-radius: 5px;
+  padding: 15px;
+  padding-right: 50px;
+  background-color: #fff;
+  position: relative;
+}
+
+.messaggio .orario {
+  font-size: 11px;
+  color: gray;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+
+.messaggio .orario i {
+  display: none;
+}
+
+/* NOTE: messaggio inviato */
+.messaggio.inviato {
+  text-align: right;
+  margin: 20px 0;
+  margin-left: auto;
+}
+
+.messaggio.inviato .box {
+  text-align: left;
+  margin-left: auto;
+  background-color: #d5f9ba;
+}
+
+.messaggio.inviato .orario i {
+  display: inline;
+  margin-left: 5px;
+}
+/* Fine Messaggio */
+/* FINE TEMPLATE */
