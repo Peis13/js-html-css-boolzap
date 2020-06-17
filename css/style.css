@@ -233,18 +233,19 @@ img {
 
 /* LATO-CHAT */
 /* Chat */
-.chat {
+.finestra-chat {
   width: 100%;
   height: calc(100% - 70px - 70px); /* NOTE: Altezza (100% del lato-chat - intestazione - toolbar) */
   padding-top: 50px;
-  overflow-y: auto;
   background-image: url(../img/mine.jpg);
 }
 
-.container {
-  width: 90%;
+.chat {
+  width: 100%;
   height: 100%;
   margin: auto;
+  overflow-y: auto;
+  scroll-behavior: smooth;
   /* background: red; */
 }
 /* Fine Chat */
@@ -303,28 +304,27 @@ img {
 
 /* Messaggio */
 .messaggio {
-  width: 70%;
+  max-width: 70%;
   color: #000;
-  margin-bottom: 15px;
-}
-
-.messaggio .box {
   display: inline-block;
-  border-radius: 5px;
   padding: 15px;
-  padding-right: 50px;
+  padding-right: 80px;
+  margin: 0 0 20px 20px;
+  border-radius: 5px;
   background-color: #fff;
+  float: left;
+  clear: both;
   position: relative;
 }
 
 .messaggio .testo-messaggio {
   overflow-wrap: break-word;
   word-break: break-word;
-
 }
+
 .messaggio .orario {
-  font-size: 11px;
   color: gray;
+  font-size: 11px;
   position: absolute;
   bottom: 5px;
   right: 5px;
@@ -336,14 +336,9 @@ img {
 
 /* NOTE: messaggio inviato */
 .messaggio.inviato {
-  text-align: right;
-  margin-left: auto;
-}
-
-.messaggio.inviato .box {
-  text-align: left;
-  margin-left: auto;
+  margin: 0 20px 20px 0;
   background-color: #d5f9ba;
+  float: right;
 }
 
 .messaggio.inviato .orario i {

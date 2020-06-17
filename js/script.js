@@ -13,67 +13,98 @@ $(document).ready(
 
     // Aggiunta di un messaggio:
     // l’utente scrive un testo nella parte bassa (input) e cliccando “invia”
-    // il testo viene aggiunto al thread sopra, come messaggio verde
+    //  --> il testo viene aggiunto al thread sopra, come messaggio verde
+    // se il l'input messaggio è vuoto
+    //  --> genera una risposta
+    //  --> altrimenti non rispondere
     $('.invio-messaggio').click(
       function() {
-        inviaMessaggio();
-        risposta('ok');
+        var messaggio = inviaMessaggio();
+        if (messaggio != '') {
+          risposta('ok');
+        }
       }
     );
 
     // Aggiunta di un messaggio:
     // l’utente scrive un testo nella parte bassa (input)
     // e cliccando il tasto 'invio' della tastiera
-    // il testo viene aggiunto al thread sopra, come messaggio verde
+    //  --> il testo viene aggiunto al thread sopra, come messaggio verde
+    // se il l'input messaggio è vuoto
+    //  --> genera una risposta
+    //  --> altrimenti non rispondere
     $('.toolbar input').keypress(
       function(event) {
         if ((event.which === 13) || (event.keyCode === 13)) {
-          inviaMessaggio();
-          risposta('ok');
+          var messaggio = inviaMessaggio();
+          if (messaggio != '') {
+            risposta('ok');
+          }
         }
       }
     );
 
     // FUNZIONI //
-    // Modifica il testo del paragrafo 'testo-messaggio' nel template html
-    // successivamente clona il blocco html 'messaggio' e ci aggiunge la classe 'inviato'
-    // infine cancella il testo scritto nell'input dall'utente
+    // Invia un messaggio di testo nella chat corrente
+    // return: stringa del testo messaggio (se inserito)
+    // esegue le istruzioni solo se il messaggio inserito non è vuoto
+    //  --> clona il blocco html 'messaggio'
+    //  --> modifica il testo del paragrafo 'testo-messaggio' dell'elemento clonato
+    //  --> aggiunge l'orario corrente
+    //  --> assegna la classe 'inviato' al clone del messaggio e appende il tutto nella chat
+    //  --> 'scrolla' in basso la chat fino all'ultimo messaggio appena inviato
+    //  --> infine cancella il testo scritto nell'input dall'utente
     function inviaMessaggio() {
       var testoMessaggio = $('.toolbar input').val();
+
+      // Esegui la funzione solo se il valore dell'input non è vuoto
       if (testoMessaggio != '') {
-
         var messaggio = $('.template .messaggio').clone();
-        messaggio.find('.testo-messaggio').text(testoMessaggio);
+        messaggio.children('.testo-messaggio').text(testoMessaggio);
+        messaggio.children('.orario').prepend(oraCorrente());
         messaggio.addClass('inviato');
+        $('#finestra-chat .chat').append(messaggio);
 
-        // var date = new Date();
-        // var oraCorrente = date.getHours();
-        // var minutiCorrenti = date.getMinutes();
-        // var orarioCorrente = aggiungiZeroAlNumero(oraCorrente) + ':' + aggiungiZeroAlNumero(minutiCorrenti);
-        // nuovoMessaggio.children('.orario-messaggio').text(orarioCorrente);
-
-        $('#chat .container').append(messaggio);
         // Scrolla alla fine della finestra
-        console.log($('#chat .container').height());
-        $('#chat .container').scrollTop($('#chat .container').height()); // TODO: aggiustare
+        $('#finestra-chat .chat').scrollTop($('#finestra-chat .chat').height());
         $('.toolbar input').val('');
       }
-    }
-
-    // Aggiunge uno zero davanti al numero se è inferiore a 10
-    function aggiungiZeroAlNumero(numero) {
-      if (numero < 10) {
-        return '0' + numero;
-      }
+      return testoMessaggio;
     }
 
     // Genera una risposta (passandogliela per argomento) dopo un tempo definito
     function risposta(testo) {
       setTimeout(function() {
-        $('.template .messaggio .testo-messaggio').text(testo);
+
         var messaggio = $('.template .messaggio').clone();
-        $('#chat .container').append(messaggio);
-      }, 2000)
+        messaggio.children('.testo-messaggio').text(testo);
+        messaggio.children('.orario').prepend(oraCorrente());
+        $('#finestra-chat .chat').append(messaggio);
+
+        // Scrolla alla fine della finestra
+        $('#finestra-chat .chat').scrollTop($('#finestra-chat .chat').height());
+      }, 2000);
+    }
+
+    // Funzione che genera l'ora corrente
+    // return: numero che identifica l'orario corrente
+    //  --> prendo ora e minuti giornalieri correnti
+    //  --> li concateno assegnandoli a una variabile di ritorno
+    function oraCorrente() {
+      var date = new Date();
+      var oraCorrente = date.getHours();
+      var minutiCorrenti = date.getMinutes();
+      var orarioCorrente = aggiungiZeroAlNumero(oraCorrente) + ':' + aggiungiZeroAlNumero(minutiCorrenti);
+      return orarioCorrente;
+    }
+
+    // Funzione che aggiunge uno zero davanti al numero se è inferiore a 10
+    function aggiungiZeroAlNumero(numero) {
+      if (numero < 10) {
+        return '0' + numero;
+      } else {
+        return numero;
+      }
     }
   }
 );
