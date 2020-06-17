@@ -8,7 +8,7 @@
 
 /* REGOLE STILI GENERALI LAYOUT */
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 h4 {
@@ -41,10 +41,7 @@ img {
   height: 100%;
   margin: auto;
   display: flex;
-  /* border: 15px solid black; */
-  /* background-color: red; */
 }
-/* Fine Macro aree */
 
 /* Lato */
 [class*="lato-"] {
@@ -55,17 +52,16 @@ img {
 .lato-contatti {
   display: flex;
   flex-direction: column;
-  flex-basis: 30%;
-  background-color: blue;
+  flex-basis: 35%;
   border-right: 1px solid lightgray;
 }
 
 .lato-chat {
-  flex-basis: 70%;
+  flex-basis: 65%;
   position: relative;
-  /* background-color: green; */
 }
 /* Fine Lato */
+/* Fine Macro aree */
 
 /* Intestazioni */
 [class*="intestazione-"] {
@@ -132,6 +128,7 @@ img {
 /* LATO-CONTATTI */
 /* Notifiche */
 .notifiche {
+  width: 100%;
   height: 80px;
   padding: 10px 20px;
   background-color: #8edafc;
@@ -151,7 +148,7 @@ img {
 
 .notifiche i {
   color: #8edafc;
-  font-size: 22px;
+  font-size: 24px;
   vertical-align: middle;
 }
 
@@ -171,7 +168,8 @@ img {
 
 /* ricerca contatti */
 .ricerca {
-  flex-basis: 50px;
+  width: 100%;
+  flex-basis: 50px; /* NOTE: Altezza */
   padding: 8px;
   background-color: #fafafa;
 }
@@ -181,6 +179,7 @@ img {
   display: flex;
   align-items: center;
   border: 1px solid lightgray;
+  background-color: #fff;
 }
 
 .ricerca .input input {
@@ -200,11 +199,12 @@ img {
 .lista-contatti {
   max-height: calc(100% - 50px);
   flex-grow: 1;
-  overflow: auto;
+  overflow-y: auto;
   background-color: #fafafa;
 }
 
 .lista-contatti > .contatto {
+  width: 100%;
   height: 80px;
   padding: 10px 20px;
   background-color: #fff;
@@ -233,24 +233,26 @@ img {
 
 /* LATO-CHAT */
 /* Chat */
+.chat {
+  width: 100%;
+  height: calc(100% - 70px - 70px); /* NOTE: Altezza (100% del lato-chat - intestazione - toolbar) */
+  padding-top: 50px;
+  overflow-y: auto;
+  background-image: url(../img/mine.jpg);
+}
+
 .container {
-  width: 80%;
+  width: 90%;
   height: 100%;
   margin: auto;
   /* background: red; */
-}
-.chat {
-  padding-top: 50px;
-  overflow-y: auto;
-  height: calc(100% - 70px - 70px); /* NOTE: Altezza (100% del lato-chat - intestazione - toolbar) */
-  background-image: url(../img/mine.jpg);
 }
 /* Fine Chat */
 
 /* Toolbar */
 .toolbar {
   width: 100%;
-  min-height: 70px;
+  height: 70px;
   padding: 10px 30px;
   position: absolute;
   bottom: 0;
@@ -273,11 +275,12 @@ img {
 
 .input-messaggio {
   flex-basis: 80%;
+  height: 100%;
 }
 
 .input-messaggio input {
   width: 100%;
-  height: 50px;
+  height: 100%;
   padding: 0 10px;
   border: none;
   border-radius: 5px;
@@ -300,7 +303,7 @@ img {
 
 /* Messaggio */
 .messaggio {
-  width: 80%;
+  width: 70%;
   color: #000;
   margin-bottom: 15px;
 }
@@ -314,6 +317,11 @@ img {
   position: relative;
 }
 
+.messaggio .testo-messaggio {
+  overflow-wrap: break-word;
+  word-break: break-word;
+
+}
 .messaggio .orario {
   font-size: 11px;
   color: gray;

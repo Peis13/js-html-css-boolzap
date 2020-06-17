@@ -16,8 +16,7 @@ $(document).ready(
     // il testo viene aggiunto al thread sopra, come messaggio verde
     $('.invio-messaggio').click(
       function() {
-        var testoMessaggio = $('.toolbar input').val();
-        inviaMessaggio(testoMessaggio);
+        inviaMessaggio();
         risposta('ok');
       }
     );
@@ -29,8 +28,7 @@ $(document).ready(
     $('.toolbar input').keypress(
       function(event) {
         if ((event.which === 13) || (event.keyCode === 13)) {
-          var testoMessaggio = $('.toolbar input').val();
-          inviaMessaggio(testoMessaggio);
+          inviaMessaggio();
           risposta('ok');
         }
       }
@@ -40,12 +38,33 @@ $(document).ready(
     // Modifica il testo del paragrafo 'testo-messaggio' nel template html
     // successivamente clona il blocco html 'messaggio' e ci aggiunge la classe 'inviato'
     // infine cancella il testo scritto nell'input dall'utente
-    function inviaMessaggio(testo) {
-      $('.template .messaggio .testo-messaggio').text(testo);
-      var messaggio = $('.template .messaggio').clone();
-      messaggio.addClass('inviato');
-      $('#chat .container').append(messaggio);
-      $('.toolbar input').val('');
+    function inviaMessaggio() {
+      var testoMessaggio = $('.toolbar input').val();
+      if (testoMessaggio != '') {
+
+        var messaggio = $('.template .messaggio').clone();
+        messaggio.find('.testo-messaggio').text(testoMessaggio);
+        messaggio.addClass('inviato');
+
+        // var date = new Date();
+        // var oraCorrente = date.getHours();
+        // var minutiCorrenti = date.getMinutes();
+        // var orarioCorrente = aggiungiZeroAlNumero(oraCorrente) + ':' + aggiungiZeroAlNumero(minutiCorrenti);
+        // nuovoMessaggio.children('.orario-messaggio').text(orarioCorrente);
+
+        $('#chat .container').append(messaggio);
+        // Scrolla alla fine della finestra
+        console.log($('#chat .container').height());
+        $('#chat .container').scrollTop($('#chat .container').height()); // TODO: aggiustare
+        $('.toolbar input').val('');
+      }
+    }
+
+    // Aggiunge uno zero davanti al numero se è inferiore a 10
+    function aggiungiZeroAlNumero(numero) {
+      if (numero < 10) {
+        return '0' + numero;
+      }
     }
 
     // Genera una risposta (passandogliela per argomento) dopo un tempo definito
