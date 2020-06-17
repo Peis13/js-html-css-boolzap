@@ -56,16 +56,21 @@ $(document).ready(
     //////////////////// Fine Messaggistica ////////////////////
 
     //////////////////// Ricerca contatti ////////////////////
-
-    $('.ricerca-contatti .ricerca').keydown(
+    // Dopo che ho premuto un tasto sulla tastiera, succede l'evento
+    // che va a ciclare i miei contatti uno ad uno (each)
+    // a questo punto confronto il testo scritto nell'input di ricerca con il nome-contatto
+    // se la stringa digitata 'contattoCercato' è inclusa nella stringa 'nomeContatto'
+    //  --> visualizza il contatto $(this)
+    //  --> altrimenti nascondilo
+    $('.ricerca-contatti .ricerca').keyup(
       function(event) {
 
         $('.lista-contatti .contatto').each(
           function() {
-            var contattoCercato = $('.ricerca-contatti .ricerca').val().toUpperCase();
+            var contattoCercato = $('.ricerca-contatti .ricerca').val().toLowerCase();
             var nomeContatto = $(this).find('.nome-contatto').text();
 
-            if (nomeContatto.toUpperCase().includes(contattoCercato)) {
+            if (nomeContatto.toLowerCase().includes(contattoCercato)) {
               $(this).show();
             } else {
               $(this).hide();
@@ -74,8 +79,17 @@ $(document).ready(
         );
       }
     );
-
     //////////////////// Fine Ricerca contatti ////////////////////
+
+    //////////////////// Mostra chat ////////////////////
+    $('.lista-contatti .contatto').click(
+      function() {
+        var indiceContatto = $(this).index();
+        $('.finestra-chat .chat.active').removeClass('active')
+        var chatContatto = $('.finestra-chat .chat').eq(indiceContatto).addClass('active');
+      }
+    );
+    //////////////////// Fine Mostra chat ////////////////////
 
     // -------------------------- FINE LOGICA -------------------------- //
 
