@@ -1,6 +1,7 @@
 $(document).ready(
   function() {
 
+    // -------------------------- LOGICA -------------------------- //
     // Appena il documento html è stato caricato del tutto
     // aggiungi l'orario corrente a tutti i messaggi presenti nella chat
     $('#finestra-chat .chat .messaggio').each(
@@ -9,6 +10,7 @@ $(document).ready(
       }
     );
 
+    //////////////////// Messaggistica ////////////////////
     // Se l'utente inizia a scrivere un messaggio
     //  --> il microfono sparisce e appare il tasto di 'invio-messaggio'
     //  --> altrimenti non succede niente
@@ -51,8 +53,33 @@ $(document).ready(
         }
       }
     );
+    //////////////////// Fine Messaggistica ////////////////////
 
-    // FUNZIONI //
+    //////////////////// Ricerca contatti ////////////////////
+
+    $('.ricerca-contatti .ricerca').keydown(
+      function(event) {
+
+        $('.lista-contatti .contatto').each(
+          function() {
+            var contattoCercato = $('.ricerca-contatti .ricerca').val().toUpperCase();
+            var nomeContatto = $(this).find('.nome-contatto').text();
+
+            if (nomeContatto.toUpperCase().includes(contattoCercato)) {
+              $(this).show();
+            } else {
+              $(this).hide();
+            }
+          }
+        );
+      }
+    );
+
+    //////////////////// Fine Ricerca contatti ////////////////////
+
+    // -------------------------- FINE LOGICA -------------------------- //
+
+    // -------------------------- FUNZIONI -------------------------- //
     // Invia un messaggio di testo nella chat corrente
     // return: stringa del testo messaggio (se inserito)
     // esegue le istruzioni solo se il messaggio inserito non è vuoto
@@ -81,6 +108,8 @@ $(document).ready(
     }
 
     // Genera una risposta (passandogliela per argomento) dopo un tempo definito
+    // Risposta dall’interlocutore: ad ogni inserimento di un messaggio,
+    // l’utente riceverà un “ok” come risposta, che apparirà dopo 1 secondo;
     function risposta(testo) {
       setTimeout(function() {
 
@@ -110,9 +139,8 @@ $(document).ready(
     function aggiungiZeroAlNumero(numero) {
       if (numero < 10) {
         return '0' + numero;
-      } else {
-        return numero;
       }
+      return numero;
     }
   }
 );
