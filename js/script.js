@@ -1,6 +1,14 @@
 $(document).ready(
   function() {
 
+    // Appena il documento html è stato caricato del tutto
+    // aggiungi l'orario corrente a tutti i messaggi presenti nella chat
+    $('#finestra-chat .chat .messaggio').each(
+      function() {
+        $(this).children('.orario').prepend(oraCorrente());
+      }
+    );
+
     // Se l'utente inizia a scrivere un messaggio
     //  --> il microfono sparisce e appare il tasto di 'invio-messaggio'
     //  --> altrimenti non succede niente
