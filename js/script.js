@@ -112,7 +112,7 @@ $(document).ready(
         messaggio.children('.testo-messaggio').text(testoMessaggio);
         messaggio.children('.orario').prepend(oraCorrente());
         messaggio.addClass('inviato');
-        $('#finestra-chat .chat').append(messaggio);
+        $('#finestra-chat .chat.active').append(messaggio);
 
         // Scrolla alla fine della finestra
         $('#finestra-chat .chat').scrollTop($('#finestra-chat .chat').height());
@@ -130,7 +130,7 @@ $(document).ready(
         var messaggio = $('.template .messaggio').clone();
         messaggio.children('.testo-messaggio').text(testo);
         messaggio.children('.orario').prepend(oraCorrente());
-        $('#finestra-chat .chat').append(messaggio);
+        $('#finestra-chat .chat.active').append(messaggio);
 
         // Scrolla alla fine della finestra
         $('#finestra-chat .chat').scrollTop($('#finestra-chat .chat').height());
