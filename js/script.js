@@ -2,6 +2,7 @@ $(document).ready(
   function() {
 
     // -------------------------- LOGICA -------------------------- //
+    //////////////////// Assegna l'ora ////////////////////
     // Appena il documento html è stato caricato del tutto
     // aggiungi l'orario corrente a tutti i messaggi presenti nella chat
     $('#finestra-chat .chat .messaggio').each(
@@ -9,6 +10,18 @@ $(document).ready(
         $(this).children('.orario').prepend(oraCorrente());
       }
     );
+    //////////////////// Fine Assegna l'ora ////////////////////
+
+    //////////////////// Menù attivo ////////////////////
+    // Al click di un elemento del menù-intestazione
+    // aggiungigli la classe 'active' e rimuovila agli altri
+    $('.elemento-menu').click(
+      function() {
+        $('.elemento-menu.active').removeClass('active');
+        $(this).addClass('active');
+      }
+    );
+    //////////////////// Fine Menù attivo ////////////////////
 
     //////////////////// Messaggistica ////////////////////
     // Se l'utente inizia a scrivere un messaggio
@@ -18,6 +31,15 @@ $(document).ready(
       function() {
         $('.invio-audio').removeClass('active');
         $('.invio-messaggio').addClass('active');
+      }
+    );
+
+    // Quando l'utente non è più nel focus dell'input
+    // ristabilisci le classi come in partenza
+    $(document).on('blur', '.toolbar input',
+      function() {
+        $('.invio-messaggio').removeClass('active');
+        $('.invio-audio').addClass('active');
       }
     );
 
@@ -79,17 +101,63 @@ $(document).ready(
         );
       }
     );
-    //////////////////// Fine Ricerca contatti ////////////////////
 
-    //////////////////// Mostra chat ////////////////////
-    $('.lista-contatti .contatto').click(
+    $(document).on('focus', '.ricerca',
       function() {
-        var indiceContatto = $(this).index();
-        $('.finestra-chat .chat.active').removeClass('active')
-        var chatContatto = $('.finestra-chat .chat').eq(indiceContatto).addClass('active');
+        $(this).parent().addClass('active');
       }
     );
-    //////////////////// Fine Mostra chat ////////////////////
+
+    // Quando l'utente non è più nel focus dell'input
+    // ristabilisci le classi come in partenza
+    $(document).on('blur', '.ricerca',
+      function() {
+        $(this).parent().removeClass('active');
+      }
+    );
+    //////////////////// Fine Ricerca contatti ////////////////////
+
+    //////////////////// Mostra chat v.1 ////////////////////
+    ///////////////      con index() + eq()      ///////////////
+    // Quando clicco sul contatto nella lista dei contatti
+    // mostra la chat corrispondente a quel contatto
+    //  --> focalizzo l'indice di posizionamento del contatto nella lista cliccato
+    //  --> e vado a compararlo con l'indice di posizionamento delle chat
+    // $('.lista-contatti .contatto').click(
+    //   function() {
+    //     var indiceContatto = $(this).index();
+    //     $('.finestra-chat .chat.active').removeClass('active')
+    //     var chatContatto = $('.finestra-chat .chat').eq(indiceContatto).addClass('active');
+    //     scrollaGiu(chatContatto);
+    //   }
+    // );
+    //////////////////// Fine Mostra chat v.1 ////////////////////
+
+    //////////////////// Mostra chat v.2 ////////////////////
+    ///////////////      leggendo l'attributo      ///////////////
+    // Quando clicco sul contatto nella lista dei contatti
+    // mostra la chat corrispondente a quel contatto
+    //  --> leggo l'attributo del contatto cliccato 'data-contact'
+    //  --> e vado a compararlo con l'attributo delle chat 'data-chat'
+    $('.lista-contatti .contatto').click(
+      function() {
+        $('.lista-contatti .contatto.active').removeClass('active');
+        $(this).addClass('active');
+        var indiceContatto = $(this).attr('data-contact');
+        $('.finestra-chat .chat.active').removeClass('active')
+
+        $('.finestra-chat .chat').each(
+          function() {
+            if ($(this).attr('data-chat') == indiceContatto) {
+              $(this).addClass('active');
+              var chatContatto = $(this);
+              scrollaGiu(chatContatto);
+            }
+          }
+        );
+      }
+    );
+    //////////////////// Fine Mostra chat v.2 ////////////////////
 
     // -------------------------- FINE LOGICA -------------------------- //
 
@@ -108,14 +176,19 @@ $(document).ready(
 
       // Esegui la funzione solo se il valore dell'input non è vuoto
       if (testoMessaggio != '') {
+
+        // clona ed edita
         var messaggio = $('.template .messaggio').clone();
         messaggio.children('.testo-messaggio').text(testoMessaggio);
         messaggio.children('.orario').prepend(oraCorrente());
         messaggio.addClass('inviato');
-        $('#finestra-chat .chat.active').append(messaggio);
 
-        // Scrolla alla fine della finestra
-        $('#finestra-chat .chat').scrollTop($('#finestra-chat .chat').height());
+        // aggiungi messaggio e scrolla giù
+        var chatCorrente = $('#finestra-chat .chat.active');
+        chatCorrente.append(messaggio);
+        scrollaGiu(chatCorrente);
+
+        // reset
         $('.toolbar input').val('');
       }
       return testoMessaggio;
@@ -127,14 +200,16 @@ $(document).ready(
     function risposta(testo) {
       setTimeout(function() {
 
+        // clona ed edita
         var messaggio = $('.template .messaggio').clone();
         messaggio.children('.testo-messaggio').text(testo);
         messaggio.children('.orario').prepend(oraCorrente());
-        $('#finestra-chat .chat.active').append(messaggio);
 
-        // Scrolla alla fine della finestra
-        $('#finestra-chat .chat').scrollTop($('#finestra-chat .chat').height());
-      }, 2000);
+        // aggiungi messaggio e scrolla giù
+        var chatCorrente = $('#finestra-chat .chat.active');
+        chatCorrente.append(messaggio);
+        scrollaGiu(chatCorrente)
+      }, 1000);
     }
 
     // Funzione che genera l'ora corrente
@@ -155,6 +230,11 @@ $(document).ready(
         return '0' + numero;
       }
       return numero;
+    }
+
+    // Scrolla la pagina corrente alla base della sua altezza
+    function scrollaGiu(finestra) {
+      finestra.scrollTop(finestra.height());
     }
   }
 );
