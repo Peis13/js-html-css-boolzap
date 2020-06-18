@@ -342,13 +342,14 @@ img {
 
 .messaggio .opzioni-messaggio {
   display: block;
+  cursor: pointer;
   color: gray;
   font-size: 18px;
   padding-bottom: 10px;
   position: absolute;
   top: 0px;
   right: 10px;
-  /* opacity: 0; */
+  opacity: 0;
 }
 
 .messaggio:hover .opzioni-messaggio {
@@ -356,6 +357,12 @@ img {
   right: 10px;
   opacity: 1;
   transition: 0.1s linear;
+}
+
+.messaggio .opzioni-messaggio.statico {
+  top: 5px;
+  right: 10px;
+  opacity: 1;
 }
 
 /* dropdown */
@@ -372,6 +379,9 @@ img {
   -1px 1px 10px 1px #a5a5a5,
   1px -1px 10px 1px #a5a5a5,
   -1px -1px 10px 1px #a5a5a5;
+}
+.messaggio .dropdown.visibile {
+  display: block;
 }
 
 .messaggio .dropdown li {

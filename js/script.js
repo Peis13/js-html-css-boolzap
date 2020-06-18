@@ -196,9 +196,32 @@ $(document).ready(
       }
     );
 
+    /////////////// Menù a tendina
+    // Cliccando sulla 'freccia-opzioni' del messaggio appare un menu a tendina
+    //  --> cerco tutti i menù a tendina della chat percorrendo il DOM e li nascondo
+    //  --> rendo visibile il menù a tendina cliccato e rendo statica la 'freccia-opzioni'
+    $(document).on('click', '.messaggio .opzioni-messaggio',
+      function() {
+
+        // forma esplicita
+        // $(this).parent().siblings().children('.opzioni-messaggio').removeClass('statico').find('.dropdown').removeClass('visibile');
+
+        var tuttiMessaggi = $(this).parent().siblings();
+        var opzioniMessaggio = tuttiMessaggi.children('.opzioni-messaggio').removeClass('statico');
+        var menuTendina = opzioniMessaggio.find('.dropdown').removeClass('visibile');
+        $(this).addClass('statico').children('.dropdown').toggleClass('visibile');
+      }
+    );
+
     /////////////// Cancella messaggio
-    // Cliccando sul messaggio appare un menu a tendina
-    // che permette di cancellare il messaggio selezionato
+    // Cliccando sull'opzione 'cancella-messaggio' del menù a tendina
+    // possiamo cancellare il messaggio selezionato
+    $(document).on('click', '.cancella-messaggio',
+      function() {
+        $(this).parents('.messaggio').remove();
+      }
+    );
+
 
                         // ----- Fine Messaggistica ----- //
 
