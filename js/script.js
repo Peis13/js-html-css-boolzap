@@ -225,7 +225,19 @@ $(document).ready(
         var tuttiMessaggi = $(this).parent().siblings();
         var opzioniMessaggio = tuttiMessaggi.children('.opzioni-messaggio').removeClass('statico');
         var menuTendina = opzioniMessaggio.find('.dropdown').removeClass('visibile');
-        $(this).addClass('statico').children('.dropdown').toggleClass('visibile');
+
+        // Controllo lo stato del menù a tendina
+        // se il menù è aperto
+        //  --> la freccia delle 'opzioni-messaggio' diventa statica
+        //  --> altrimenti la freccia non rimane statica
+        if ($(this).children('.dropdown').hasClass('visibile')) {
+          var opzioniCorrente = $(this).removeClass('statico');
+          opzioniCorrente.children('.dropdown').toggleClass('visibile');
+
+        } else {
+          var opzioniCorrente = $(this).addClass('statico');
+          opzioniCorrente.children('.dropdown').toggleClass('visibile');
+        }
       }
     );
 
