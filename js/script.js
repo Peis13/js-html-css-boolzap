@@ -2,7 +2,7 @@ $(document).ready(
   function() {
 
     // -------------------------- LOGICA -------------------------- //
-    //////////////////// Assegna l'ora ////////////////////
+    /////////////// Assegna l'ora
     // Appena il documento html è stato caricato del tutto
     // aggiungi l'orario corrente a tutti i messaggi presenti nella chat
     $('#finestra-chat .chat .messaggio').each(
@@ -10,9 +10,11 @@ $(document).ready(
         $(this).children('.orario').prepend(oraCorrente());
       }
     );
-    //////////////////// Fine Assegna l'ora ////////////////////
+    /////////////// Fine Assegna l'ora
 
-    //////////////////// Menù attivo ////////////////////
+                        // ----- Intestazione ----- //
+
+    /////////////// Icone menù attivazione
     // Al click di un elemento del menù-intestazione
     // aggiungigli la classe 'active' e rimuovila agli altri
     $('.elemento-menu').click(
@@ -21,63 +23,11 @@ $(document).ready(
         $(this).addClass('active');
       }
     );
-    //////////////////// Fine Menù attivo ////////////////////
+                        // ----- Fine Intestazione ----- //
 
-    //////////////////// Messaggistica ////////////////////
-    // Se l'utente inizia a scrivere un messaggio
-    //  --> il microfono sparisce e appare il tasto di 'invio-messaggio'
-    //  --> altrimenti non succede niente
-    $(document).on('focus', '.toolbar input',
-      function() {
-        $('.invio-audio').removeClass('active');
-        $('.invio-messaggio').addClass('active');
-      }
-    );
+                        // ----- Ricerca contatti ----- //
 
-    // Quando l'utente non è più nel focus dell'input
-    // ristabilisci le classi come in partenza
-    $(document).on('blur', '.toolbar input',
-      function() {
-        $('.invio-messaggio').removeClass('active');
-        $('.invio-audio').addClass('active');
-      }
-    );
-
-    // Aggiunta di un messaggio:
-    // l’utente scrive un testo nella parte bassa (input) e cliccando “invia”
-    //  --> il testo viene aggiunto al thread sopra, come messaggio verde
-    // se il l'input messaggio è vuoto
-    //  --> genera una risposta
-    //  --> altrimenti non rispondere
-    $('.invio-messaggio').click(
-      function() {
-        var messaggio = inviaMessaggio();
-        if (messaggio != '') {
-          risposta('ok');
-        }
-      }
-    );
-
-    // Aggiunta di un messaggio:
-    // l’utente scrive un testo nella parte bassa (input)
-    // e cliccando il tasto 'invio' della tastiera
-    //  --> il testo viene aggiunto al thread sopra, come messaggio verde
-    // se il l'input messaggio è vuoto
-    //  --> genera una risposta
-    //  --> altrimenti non rispondere
-    $('.toolbar input').keypress(
-      function(event) {
-        if ((event.which === 13) || (event.keyCode === 13)) {
-          var messaggio = inviaMessaggio();
-          if (messaggio != '') {
-            risposta('ok');
-          }
-        }
-      }
-    );
-    //////////////////// Fine Messaggistica ////////////////////
-
-    //////////////////// Ricerca contatti ////////////////////
+    /////////////// Filtro ricerca
     // Dopo che ho premuto un tasto sulla tastiera, succede l'evento
     // che va a ciclare i miei contatti uno ad uno (each)
     // a questo punto confronto il testo scritto nell'input di ricerca con il nome-contatto
@@ -102,27 +52,29 @@ $(document).ready(
       }
     );
 
+    /////////////// Focus input ricerca
     $(document).on('focus', '.ricerca',
       function() {
         $(this).parent().addClass('active');
       }
     );
 
+    /////////////// Blur input ricerca
     // Quando l'utente non è più nel focus dell'input
     // ristabilisci le classi come in partenza
     $(document).on('blur', '.ricerca',
       function() {
-        $(this).parent().removeClass('active');
+        $(this).parent().removeClass('active'); // TODO: lasciare la freccia di invio messaggio se input.val() != ''
       }
     );
-    //////////////////// Fine Ricerca contatti ////////////////////
+                        // ----- Fine Ricerca contatti ----- //
 
-    //////////////////// Mostra chat ////////////////////
+                        // ----- Mostra chat ----- //
     // Quando clicco sul contatto nella lista dei contatti
     // mostra la chat corrispondente a quel contatto
     // e rendo attivo il contatto
 
-    ///////////////      v.1: con index() + eq()      ///////////////
+    /////////////// v.1: con index() + eq()
     //  --> focalizzo l'indice di posizionamento del contatto nella lista cliccato
     //  --> e vado a compararlo con l'indice di posizionamento delle chat
     // $('.lista-contatti .contatto').click(
@@ -138,9 +90,9 @@ $(document).ready(
     //     scrollaGiu(chatContatto);
     //   }
     // );
-    ///////////////      fine v.1: con index() + eq()      ///////////////
+    /////////////// fine v.1: con index() + eq()
 
-    ///////////////      v.2: leggendo l'attributo      ///////////////
+    /////////////// v.2: leggendo l'attributo
     //  --> leggo l'attributo del contatto cliccato 'data-contact'
     //  --> e vado a compararlo con ogni attributo 'data-chat' delle singole chat
     // $('.lista-contatti .contatto').click(
@@ -164,9 +116,9 @@ $(document).ready(
     //     );
     //   }
     // );
-    ///////////////      fine v.2: leggendo l'attributo      ///////////////
+    /////////////// fine v.2: leggendo l'attributo
 
-    ///////////////      v.3: associando l'attributo      ///////////////
+    /////////////// v.3: associando l'attributo
     //  --> leggo l'attributo del contatto cliccato 'data-contact'
     //  --> e col suo valore vado a cercre l'attributo 'data-chat' della chat corrispondente
     $('.lista-contatti .contatto').click(
@@ -184,8 +136,71 @@ $(document).ready(
         scrollaGiu(chatCorrispondente);
       }
     );
-    ///////////////      fine v.3: associando l'attributo      ///////////////
-    //////////////////// Fine Mostra chat ////////////////////
+    /////////////// fine v.3: associando l'attributo
+
+                        // ----- Fine Mostra chat ----- //
+
+                        // ----- Messaggistica ----- //
+
+    /////////////// Focus input messaggio
+    // Se l'utente inizia a scrivere un messaggio
+    //  --> il microfono sparisce e appare il tasto di 'invio-messaggio'
+    //  --> altrimenti non succede niente
+    $(document).on('focus', '.toolbar input',
+      function() {
+        $('.invio-audio').removeClass('active');
+        $('.invio-messaggio').addClass('active');
+      }
+    );
+
+    /////////////// Blur input messaggio
+    // Quando l'utente non è più nel focus dell'input
+    // ristabilisci le classi come in partenza
+    $(document).on('blur', '.toolbar input',
+      function() {
+        $('.invio-messaggio').removeClass('active');
+        $('.invio-audio').addClass('active');
+      }
+    );
+
+    /////////////// Aggiunta di un messaggio
+    // l’utente scrive un testo nella parte bassa (input) e cliccando “invia”
+    //  --> il testo viene aggiunto al thread sopra, come messaggio verde
+    // se il l'input messaggio è vuoto
+    //  --> genera una risposta
+    //  --> altrimenti non rispondere
+    $('.invio-messaggio').click(
+      function() {
+        var messaggio = inviaMessaggio();
+        if (messaggio != '') {
+          risposta('ok');
+        }
+      }
+    );
+
+    /////////////// Aggiunta di un messaggio
+    // l’utente scrive un testo nella parte bassa (input)
+    // e cliccando il tasto 'invio' della tastiera
+    //  --> il testo viene aggiunto al thread sopra, come messaggio verde
+    // se il l'input messaggio è vuoto
+    //  --> genera una risposta
+    //  --> altrimenti non rispondere
+    $('.toolbar input').keypress(
+      function(event) {
+        if ((event.which === 13) || (event.keyCode === 13)) {
+          var messaggio = inviaMessaggio();
+          if (messaggio != '') {
+            risposta('ok');
+          }
+        }
+      }
+    );
+
+    /////////////// Cancella messaggio
+    // Cliccando sul messaggio appare un menu a tendina
+    // che permette di cancellare il messaggio selezionato
+
+                        // ----- Fine Messaggistica ----- //
 
     // -------------------------- FINE LOGICA -------------------------- //
 

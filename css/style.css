@@ -261,7 +261,6 @@ img {
   margin: auto;
   overflow-y: auto;
   scroll-behavior: smooth;
-  /* background: red; */
 }
 
 .chat.active {
@@ -341,6 +340,51 @@ img {
   word-break: break-word;
 }
 
+.messaggio .opzioni-messaggio {
+  display: block;
+  color: gray;
+  font-size: 18px;
+  padding-bottom: 10px;
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  /* opacity: 0; */
+}
+
+.messaggio:hover .opzioni-messaggio {
+  top: 5px;
+  right: 10px;
+  opacity: 1;
+  transition: 0.1s linear;
+}
+
+/* dropdown */
+.messaggio .dropdown {
+  display: none;
+  z-index: 1;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  white-space: nowrap;
+  background-color: #fff;
+  box-shadow:
+  1px 1px 10px 1px #a5a5a5,
+  -1px 1px 10px 1px #a5a5a5,
+  1px -1px 10px 1px #a5a5a5,
+  -1px -1px 10px 1px #a5a5a5;
+}
+
+.messaggio .dropdown li {
+  font-size: 15px;
+  padding: 10px 15px;
+}
+
+.messaggio .dropdown li:hover {
+  cursor: pointer;
+  background-color: #e9ebeb;
+}
+/* fine dropdown */
+
 .messaggio .orario {
   color: gray;
   font-size: 11px;
@@ -363,6 +407,11 @@ img {
 .messaggio.inviato .orario i {
   display: inline;
   margin-left: 5px;
+}
+
+.messaggio.inviato .dropdown {
+  left: auto;
+  right: 0;
 }
 /* Fine Messaggio */
 /* FINE TEMPLATE */
