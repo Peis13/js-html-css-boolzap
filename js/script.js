@@ -73,8 +73,9 @@ $(document).ready(
 
                         // ----- Mostra chat ----- //
     // Quando clicco sul contatto nella lista dei contatti
-    // mostra la chat corrispondente a quel contatto
-    // e rendo attivo il contatto
+    //  --> mostra la chat corrispondente a quel contatto
+    //  --> cambia il contatto nell'intestazione-chat
+    //  --> rendo attivo il contatto
 
     /////////////// v.1: con index() + eq()
     //  --> focalizzo l'indice di posizionamento del contatto nella lista cliccato
@@ -129,6 +130,12 @@ $(document).ready(
         // attivo/disattivo il contatto
         $('.lista-contatti .contatto.active').removeClass('active');
         $(this).addClass('active');
+        var avatarContatto = $(this).find('img').attr('src');
+        var nomeContatto = $(this).find('.nome-contatto').text();
+        console.log(avatarContatto);
+        console.log(nomeContatto);
+        var avatarDestinatario = $('#destinatario').find('img').attr('src', avatarContatto);
+        var nomeDestinatario = $('#destinatario').find('.nome-contatto').text(nomeContatto);
 
         var dataContact = $(this).attr('data-contact');
         var selettoreChat = '.finestra-chat .chat[data-chat="' + dataContact + '"]';
@@ -172,6 +179,7 @@ $(document).ready(
     /////////////// Aggiunta di un messaggio
     // L’utente scrive un testo nella parte bassa (input) e cliccando “invia”
     // il testo viene aggiunto al thread sopra, come messaggio verde
+    // cambia l'icona dopo l'invio del messaggio
     // se il l'input messaggio non è vuoto
     //  --> genera una risposta
     //  --> altrimenti non rispondere
@@ -180,6 +188,8 @@ $(document).ready(
         var messaggio = inviaMessaggio();
         if (messaggio != '') {
           risposta('ok');
+          $('.invio-messaggio').removeClass('active');
+          $('.invio-audio').addClass('active');
         }
       }
     );

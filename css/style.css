@@ -23,6 +23,7 @@ ul {
 img {
   height: 100%;
   border-radius: 50%;
+  box-shadow: 0px 3px 5px 0px gray;
   vertical-align: middle;
 }
 
@@ -117,8 +118,9 @@ img {
 
 .elemento-menu:hover {
   color: #339af0;
-  transform: scale(1.1);
   cursor: pointer;
+  transform: scale(1.2);
+  transition: 0.2s;
 }
 /* Fine Menù-intestazione */
 /* Fine Intestazioni */
@@ -201,6 +203,7 @@ img {
 .ricerca-contatti .input.active i {
   color: #339af0;
   transform: scale(1.3);
+  transition: 0.3s;
 }
 /* fine ricerca contatti */
 
@@ -228,6 +231,12 @@ img {
 .lista-contatti > .contatto:hover {
   cursor: pointer;
   background-color: #e9ebeb;
+}
+
+.lista-contatti > .contatto:hover .avatar,
+.lista-contatti > .contatto:hover .nome-contatto {
+  transform: scale(1.1);
+  transition: 0.2s;
 }
 
 .lista-contatti .info-contatto {
@@ -288,8 +297,9 @@ img {
 
 .toolbar i:hover {
   color: #2acabb;
-  transform: scale(1.1);
   cursor: pointer;
+  transform: scale(1.15);
+  transition: 0.2s;
 }
 
 .input-messaggio {
@@ -324,7 +334,7 @@ img {
 .messaggio {
   display: inline-block;
   max-width: 70%;
-  padding: 15px;
+  padding: 8px 10px;
   padding-right: 80px;
   margin: 0 0 20px 20px;
   border-radius: 5px;
@@ -341,18 +351,25 @@ img {
 }
 
 .messaggio .opzioni-messaggio {
-  display: block;
+  display: inline-block;
   cursor: pointer;
-  color: gray;
   font-size: 18px;
-  padding-bottom: 10px;
+  margin-bottom: 10px;
+  color: gray;
+  background-color: inherit;
+  opacity: 0;
+  box-shadow:
+  1px 1px 3px 1px #fff,
+  -1px 1px 3px 1px #fff,
+  1px -1px 3px 1px #fff,
+  -1px -1px 3px 1px #fff;
   position: absolute;
   top: 0px;
   right: 10px;
-  opacity: 0;
 }
 
 .messaggio:hover .opzioni-messaggio {
+  z-index: 1;
   top: 5px;
   right: 10px;
   opacity: 1;
@@ -360,6 +377,7 @@ img {
 }
 
 .messaggio .opzioni-messaggio.statico {
+  z-index: 1;
   top: 5px;
   right: 10px;
   opacity: 1;
@@ -400,7 +418,7 @@ img {
   font-size: 11px;
   position: absolute;
   bottom: 5px;
-  right: 5px;
+  right: 10px;
 }
 
 .messaggio .orario i {
@@ -412,6 +430,14 @@ img {
   margin: 0 20px 20px 0;
   background-color: #d5f9ba;
   float: right;
+}
+
+.messaggio.inviato .opzioni-messaggio {
+  box-shadow:
+  1px 1px 3px 1px #d5f9ba,
+  -10px 1px 3px 1px #d5f9ba,
+  1px -1px 3px 1px #d5f9ba,
+  -1px -1px 3px 1px #d5f9ba;
 }
 
 .messaggio.inviato .orario i {
