@@ -130,6 +130,28 @@ img {
 /* Fine Menù-intestazione */
 /* Fine Intestazioni */
 
+/* Scrollbar */
+/* width */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #009688;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #008377;
+}
+
+/* Corner */
+::-webkit-scrollbar-corner {
+  background-color: #f3eeea;
+}
+/* Fine Scrollbar */
+
 .input {
   height: 100%;
   background-color: #fff;
@@ -264,7 +286,6 @@ img {
 .finestra-chat {
   width: 100%;
   height: calc(100% - 70px - 70px); /* NOTE: Altezza (100% del lato-chat - intestazione - toolbar) */
-  padding-top: 50px;
   background-image: url(../img/mine.jpg);
 }
 
@@ -273,6 +294,7 @@ img {
   width: 100%;
   height: 100%;
   margin: auto;
+  padding-top: 50px;
   overflow-y: auto;
   scroll-behavior: smooth;
 }
