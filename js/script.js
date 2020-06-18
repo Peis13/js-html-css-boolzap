@@ -86,13 +86,13 @@ $(document).ready(
     //  --> altrimenti nascondilo
     $('.ricerca-contatti .ricerca').keyup(
       function(event) {
+        var contattoCercato = $(this).val().toLowerCase();
 
         $('.lista-contatti .contatto').each(
           function() {
-            var contattoCercato = $('.ricerca-contatti .ricerca').val().toLowerCase();
-            var nomeContatto = $(this).find('.nome-contatto').text();
+            var nomeContatto = $(this).find('.nome-contatto').text().toLowerCase();
 
-            if (nomeContatto.toLowerCase().includes(contattoCercato)) {
+            if (nomeContatto.includes(contattoCercato)) {
               $(this).show();
             } else {
               $(this).hide();
@@ -117,47 +117,75 @@ $(document).ready(
     );
     //////////////////// Fine Ricerca contatti ////////////////////
 
-    //////////////////// Mostra chat v.1 ////////////////////
-    ///////////////      con index() + eq()      ///////////////
+    //////////////////// Mostra chat ////////////////////
     // Quando clicco sul contatto nella lista dei contatti
     // mostra la chat corrispondente a quel contatto
+    // e rendo attivo il contatto
+
+    ///////////////      v.1: con index() + eq()      ///////////////
     //  --> focalizzo l'indice di posizionamento del contatto nella lista cliccato
     //  --> e vado a compararlo con l'indice di posizionamento delle chat
     // $('.lista-contatti .contatto').click(
     //   function() {
+    //
+    //     // attivo/disattivo il contatto
+    //     $('.lista-contatti .contatto.active').removeClass('active');
+    //     $(this).addClass('active');
+    //
     //     var indiceContatto = $(this).index();
-    //     $('.finestra-chat .chat.active').removeClass('active')
+    //     $('.finestra-chat .chat.active').removeClass('active');
     //     var chatContatto = $('.finestra-chat .chat').eq(indiceContatto).addClass('active');
     //     scrollaGiu(chatContatto);
     //   }
     // );
-    //////////////////// Fine Mostra chat v.1 ////////////////////
+    ///////////////      fine v.1: con index() + eq()      ///////////////
 
-    //////////////////// Mostra chat v.2 ////////////////////
-    ///////////////      leggendo l'attributo      ///////////////
-    // Quando clicco sul contatto nella lista dei contatti
-    // mostra la chat corrispondente a quel contatto
+    ///////////////      v.2: leggendo l'attributo      ///////////////
     //  --> leggo l'attributo del contatto cliccato 'data-contact'
-    //  --> e vado a compararlo con l'attributo delle chat 'data-chat'
+    //  --> e vado a compararlo con ogni attributo 'data-chat' delle singole chat
+    // $('.lista-contatti .contatto').click(
+    //   function() {
+    //
+    //     // attivo/disattivo il contatto
+    //     $('.lista-contatti .contatto.active').removeClass('active');
+    //     $(this).addClass('active');
+    //
+    //     var indiceContatto = $(this).attr('data-contact');
+    //     $('.finestra-chat .chat.active').removeClass('active');
+    //
+    //     $('.finestra-chat .chat').each(
+    //       function() {
+    //         if ($(this).attr('data-chat') == indiceContatto) {
+    //           $(this).addClass('active');
+    //           var chatContatto = $(this);
+    //           scrollaGiu(chatContatto);
+    //         }
+    //       }
+    //     );
+    //   }
+    // );
+    ///////////////      fine v.2: leggendo l'attributo      ///////////////
+
+    ///////////////      v.3: associando l'attributo      ///////////////
+    //  --> leggo l'attributo del contatto cliccato 'data-contact'
+    //  --> e col suo valore vado a cercre l'attributo 'data-chat' della chat corrispondente
     $('.lista-contatti .contatto').click(
       function() {
+
+        // attivo/disattivo il contatto
         $('.lista-contatti .contatto.active').removeClass('active');
         $(this).addClass('active');
-        var indiceContatto = $(this).attr('data-contact');
-        $('.finestra-chat .chat.active').removeClass('active')
 
-        $('.finestra-chat .chat').each(
-          function() {
-            if ($(this).attr('data-chat') == indiceContatto) {
-              $(this).addClass('active');
-              var chatContatto = $(this);
-              scrollaGiu(chatContatto);
-            }
-          }
-        );
+        var dataContact = $(this).attr('data-contact');
+        var selettoreChat = '.finestra-chat .chat[data-chat="' + dataContact + '"]';
+        var chatCorrispondente = $(selettoreChat);
+        $('.finestra-chat .chat.active').removeClass('active');
+        $(chatCorrispondente).addClass('active');
+        scrollaGiu(chatCorrispondente);
       }
     );
-    //////////////////// Fine Mostra chat v.2 ////////////////////
+    ///////////////      fine v.3: associando l'attributo      ///////////////
+    //////////////////// Fine Mostra chat ////////////////////
 
     // -------------------------- FINE LOGICA -------------------------- //
 
@@ -209,7 +237,7 @@ $(document).ready(
         var chatCorrente = $('#finestra-chat .chat.active');
         chatCorrente.append(messaggio);
         scrollaGiu(chatCorrente)
-      }, 1000);
+      }, 500);
     }
 
     // Funzione che genera l'ora corrente
