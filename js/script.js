@@ -53,6 +53,8 @@ $(document).ready(
     );
 
     /////////////// Focus input ricerca
+    // Quando entro nel focus dell'input di ricerca
+    // aggiungi la classe 'active'
     $(document).on('focus', '.ricerca',
       function() {
         $(this).parent().addClass('active');
@@ -60,8 +62,8 @@ $(document).ready(
     );
 
     /////////////// Blur input ricerca
-    // Quando l'utente non è più nel focus dell'input
-    // ristabilisci le classi come in partenza
+    // Quando l'utente esce dal focus dell'input
+    // rimuovi la classe 'active'
     $(document).on('blur', '.ricerca',
       function() {
         $(this).parent().removeClass('active'); // TODO: lasciare la freccia di invio messaggio se input.val() != ''
@@ -143,9 +145,8 @@ $(document).ready(
                         // ----- Messaggistica ----- //
 
     /////////////// Focus input messaggio
-    // Se l'utente inizia a scrivere un messaggio
-    //  --> il microfono sparisce e appare il tasto di 'invio-messaggio'
-    //  --> altrimenti non succede niente
+    // Quando l'utente entra nel focus dell'input messaggio
+    // il microfono sparisce e appare il tasto di 'invio-messaggio'
     $(document).on('focus', '.toolbar input',
       function() {
         $('.invio-audio').removeClass('active');
@@ -154,19 +155,24 @@ $(document).ready(
     );
 
     /////////////// Blur input messaggio
-    // Quando l'utente non è più nel focus dell'input
-    // ristabilisci le classi come in partenza
+    // Quando l'utente non è più nel focus dell'input messaggio
+    // il tasto di 'invio-messaggio' sparisce e appare il microfono
     $(document).on('blur', '.toolbar input',
       function() {
-        $('.invio-messaggio').removeClass('active');
-        $('.invio-audio').addClass('active');
+        var testoMessaggio = $('.toolbar input').val();
+
+        // Esegui la funzione solo se il valore dell'input non è vuoto
+        if (testoMessaggio == '') {
+          $('.invio-messaggio').removeClass('active');
+          $('.invio-audio').addClass('active');
+        }
       }
     );
 
     /////////////// Aggiunta di un messaggio
-    // l’utente scrive un testo nella parte bassa (input) e cliccando “invia”
-    //  --> il testo viene aggiunto al thread sopra, come messaggio verde
-    // se il l'input messaggio è vuoto
+    // L’utente scrive un testo nella parte bassa (input) e cliccando “invia”
+    // il testo viene aggiunto al thread sopra, come messaggio verde
+    // se il l'input messaggio non è vuoto
     //  --> genera una risposta
     //  --> altrimenti non rispondere
     $('.invio-messaggio').click(
@@ -179,10 +185,10 @@ $(document).ready(
     );
 
     /////////////// Aggiunta di un messaggio
-    // l’utente scrive un testo nella parte bassa (input)
+    // L’utente scrive un testo nella parte bassa (input)
     // e cliccando il tasto 'invio' della tastiera
-    //  --> il testo viene aggiunto al thread sopra, come messaggio verde
-    // se il l'input messaggio è vuoto
+    // il testo viene aggiunto al thread sopra, come messaggio verde
+    // se il l'input messaggio non è vuoto
     //  --> genera una risposta
     //  --> altrimenti non rispondere
     $('.toolbar input').keypress(
