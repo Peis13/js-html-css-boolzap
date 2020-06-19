@@ -328,7 +328,9 @@ $(document).ready(
 
     // Scrolla la pagina corrente alla base della sua altezza
     function scrollaGiu(finestra) {
-      finestra.scrollTop(finestra.height());
+      finestra.scrollTop(finestra.prop('scrollHeight'));
+      // finestra.scrollTop(finestra.height());
+      // $('.chat-window').scrollTop($('.chat-window').prop('scrollHeight'));
     }
   }
 );
