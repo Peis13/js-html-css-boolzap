@@ -87,6 +87,8 @@ $(document).ready(
     //     $('.lista-contatti .contatto.active').removeClass('active');
     //     $(this).addClass('active');
     //
+    //     cambiaDestinatario(this);
+    //
     //     var indiceContatto = $(this).index();
     //     $('.finestra-chat .chat.active').removeClass('active');
     //     var chatContatto = $('.finestra-chat .chat').eq(indiceContatto).addClass('active');
@@ -107,6 +109,8 @@ $(document).ready(
     //
     //     var indiceContatto = $(this).attr('data-contact');
     //     $('.finestra-chat .chat.active').removeClass('active');
+    //
+    //     cambiaDestinatario(this);
     //
     //     $('.finestra-chat .chat').each(
     //       function() {
@@ -130,12 +134,8 @@ $(document).ready(
         // attivo/disattivo il contatto
         $('.lista-contatti .contatto.active').removeClass('active');
         $(this).addClass('active');
-        var avatarContatto = $(this).find('img').attr('src');
-        var nomeContatto = $(this).find('.nome-contatto').text();
-        console.log(avatarContatto);
-        console.log(nomeContatto);
-        var avatarDestinatario = $('#destinatario').find('img').attr('src', avatarContatto);
-        var nomeDestinatario = $('#destinatario').find('.nome-contatto').text(nomeContatto);
+
+        cambiaDestinatario(this);
 
         var dataContact = $(this).attr('data-contact');
         var selettoreChat = '.finestra-chat .chat[data-chat="' + dataContact + '"]';
@@ -222,8 +222,8 @@ $(document).ready(
         // forma esplicita
         // $(this).parent().siblings().children('.opzioni-messaggio').removeClass('statico').find('.dropdown').removeClass('visibile');
 
-        var tuttiMessaggi = $(this).parent().siblings();
-        var opzioniMessaggio = tuttiMessaggi.children('.opzioni-messaggio').removeClass('statico');
+        var messaggiFratelli = $(this).parent().siblings();
+        var opzioniMessaggio = messaggiFratelli.children('.opzioni-messaggio').removeClass('statico');
         var menuTendina = opzioniMessaggio.find('.dropdown').removeClass('visibile');
 
         // Controllo lo stato del menù a tendina
@@ -304,6 +304,16 @@ $(document).ready(
         chatCorrente.append(messaggio);
         scrollaGiu(chatCorrente)
       }, 500);
+    }
+
+    // Cambia destinatario visualizzato nell'intestazione-chat
+    // Leggo immagine e nome relativi al contatto della lista-contatti
+    // che andrò a sostituire al contatto nell'intestazione-chat del destinatario
+    function cambiaDestinatario(contatto) {
+      var avatarContatto = $(contatto).find('img').attr('src');
+      var nomeContatto = $(contatto).find('.nome-contatto').text();
+      var avatarDestinatario = $('#destinatario').find('img').attr('src', avatarContatto);
+      var nomeDestinatario = $('#destinatario').find('.nome-contatto').text(nomeContatto);
     }
 
     // Funzione che genera l'ora corrente
