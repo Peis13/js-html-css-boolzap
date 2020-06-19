@@ -66,7 +66,7 @@ $(document).ready(
     // rimuovi la classe 'active'
     $(document).on('blur', '.ricerca',
       function() {
-        $(this).parent().removeClass('active'); // TODO: lasciare la freccia di invio messaggio se input.val() != ''
+        $(this).parent().removeClass('active');
       }
     );
                         // ----- Fine Ricerca contatti ----- //
@@ -135,6 +135,12 @@ $(document).ready(
         $('.lista-contatti .contatto.active').removeClass('active');
         $(this).addClass('active');
 
+        // svuoto la barra di ricerca contatti
+        // e una volta selezionato il contatto
+        // li rendo tutti visibili
+        $('.ricerca-contatti .ricerca').val('');
+        $('.lista-contatti .contatto').show();
+
         cambiaDestinatario(this);
 
         var dataContact = $(this).attr('data-contact');
@@ -164,6 +170,7 @@ $(document).ready(
     /////////////// Blur input messaggio
     // Quando l'utente non è più nel focus dell'input messaggio
     // il tasto di 'invio-messaggio' sparisce e appare il microfono
+    // solo se l'input-messaggio è vuoto
     $(document).on('blur', '.toolbar input',
       function() {
         var testoMessaggio = $('.toolbar input').val();
