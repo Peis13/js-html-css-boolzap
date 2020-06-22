@@ -36,7 +36,7 @@
 
             <!-- Menù-intestazione -->
             <ul class="menu">
-              <li class="elemento-menu">
+              <li class="elemento-menu modalita-notte">
                 <i class="fas fa-lightbulb"></i>
               </li>
               <li class="elemento-menu">
@@ -53,11 +53,11 @@
           <!-- Notifiche -->
           <div id="notifiche" class="notifiche">
 
-            <!-- miniatura -->
-            <div class="miniatura">
+            <!-- icona notifiche -->
+            <div class="icona">
               <i class="fas fa-bell-slash"></i>
             </div>
-            <!-- fine miniatura -->
+            <!-- fine icona notifiche -->
 
             <!-- impostazioni-notifiche -->
             <div class="impostazioni-notifiche">
@@ -92,8 +92,9 @@
             <!-- lista-contatti -->
             <ul id="lista-contatti" class="lista-contatti">
 
+
               <!-- singolo contatto -->
-              <li data-contact="0" class="contatto">
+              <li data-contact="0" class="contatto active">
 
                 <!-- avatar -->
                 <div class="avatar">
@@ -106,16 +107,14 @@
                   <h4 class="nome-contatto">
                     michele
                   </h4>
-                  <p class="info-contatto">
-                    Online
-                  </p>
+                  <p class="ultimo-messaggio">Sono Michele</p>
                 </div>
                 <!-- fine credenziali -->
 
                 <!-- orario -->
-                <div class="orario">
-                  <span>17.53</span>
-                </div>
+                <span class="orario">
+                  Ieri
+                </span>
                 <!-- fine orario -->
               </li>
               <!-- fine singolo contatto -->
@@ -134,16 +133,14 @@
                   <h4 class="nome-contatto">
                     fabio
                   </h4>
-                  <p class="info-contatto">
-                    Online
-                  </p>
+                  <p class="ultimo-messaggio">Sono Fabio</p>
                 </div>
                 <!-- fine credenziali -->
 
                 <!-- orario -->
-                <div class="orario">
-                  <span>17.53</span>
-                </div>
+                <span class="orario">
+                  18.07
+                </span>
                 <!-- fine orario -->
               </li>
               <!-- fine singolo contatto -->
@@ -162,16 +159,14 @@
                   <h4 class="nome-contatto">
                     samuele
                   </h4>
-                  <p class="info-contatto">
-                    Online
-                  </p>
+                  <p class="ultimo-messaggio">Sono Samuele</p>
                 </div>
                 <!-- fine credenziali -->
 
                 <!-- orario -->
-                <div class="orario">
-                  <span>17.53</span>
-                </div>
+                <span class="orario">
+                  15.30
+                </span>
                 <!-- fine orario -->
               </li>
               <!-- fine singolo contatto -->
@@ -190,16 +185,14 @@
                   <h4 class="nome-contatto">
                     alessandro b.
                   </h4>
-                  <p class="info-contatto">
-                    Online
-                  </p>
+                  <p class="ultimo-messaggio">Sono Alessandro B.</p>
                 </div>
                 <!-- fine credenziali -->
 
                 <!-- orario -->
-                <div class="orario">
-                  <span>17.53</span>
-                </div>
+                <span class="orario">
+                  Ieri
+                </span>
                 <!-- fine orario -->
               </li>
               <!-- fine singolo contatto -->
@@ -218,16 +211,14 @@
                   <h4 class="nome-contatto">
                     alessandro l.
                   </h4>
-                  <p class="info-contatto">
-                    Online
-                  </p>
+                  <p class="ultimo-messaggio">Sono Alessandro L.</p>
                 </div>
                 <!-- fine credenziali -->
 
                 <!-- orario -->
-                <div class="orario">
-                  <span>17.53</span>
-                </div>
+                <span class="orario">
+                  Ieri
+                </span>
                 <!-- fine orario -->
               </li>
               <!-- fine singolo contatto -->
@@ -244,18 +235,16 @@
                 <!-- credenziali -->
                 <div class="credenziali">
                   <h4 class="nome-contatto">
-                    claudio
+                    claudia
                   </h4>
-                  <p class="info-contatto">
-                    Online
-                  </p>
+                  <p class="ultimo-messaggio">Sono Claudia</p>
                 </div>
                 <!-- fine credenziali -->
 
                 <!-- orario -->
-                <div class="orario">
-                  <span>17.53</span>
-                </div>
+                <span class="orario">
+                  21.15
+                </span>
                 <!-- fine orario -->
               </li>
               <!-- fine singolo contatto -->
@@ -274,16 +263,14 @@
                   <h4 class="nome-contatto">
                     davide
                   </h4>
-                  <p class="info-contatto">
-                    Online
-                  </p>
+                  <p class="ultimo-messaggio">Sono Davide</p>
                 </div>
                 <!-- fine credenziali -->
 
                 <!-- orario -->
-                <div class="orario">
-                  <span>17.53</span>
-                </div>
+                <span class="orario">
+                  22.00
+                </span>
                 <!-- fine orario -->
               </li>
               <!-- fine singolo contatto -->
@@ -302,21 +289,23 @@
                   <h4 class="nome-contatto">
                     federico
                   </h4>
-                  <p class="info-contatto">
-                    Online
-                  </p>
+                  <p class="ultimo-messaggio">Sono Federico</p>
                 </div>
                 <!-- fine credenziali -->
 
                 <!-- orario -->
-                <div class="orario">
-                  <span>17.53</span>
-                </div>
+                <span class="orario">
+                  Ieri
+                </span>
                 <!-- fine orario -->
               </li>
               <!-- fine singolo contatto -->
             </ul>
             <!-- fine lista-contatti -->
+
+            <!-- aggiungi nuovo contatto -->
+            <span id="aggiungi" class="aggiungi">+</span>
+            <!-- fine aggiungi nuovo contatto -->
           </div>
           <!-- Fine Contatti -->
         </div>
@@ -343,7 +332,7 @@
                   michele
                 </h4>
                 <p class="info-contatto">
-                  Ultimo accesso oggi alle 15.40
+                  Online
                 </p>
               </div>
               <!-- fine credenziali -->
@@ -369,6 +358,71 @@
           <!-- FINESTRA CHAT -->
           <div id="finestra-chat" class="finestra-chat">
 
+            <!-- finestra aggiungi-contatto -->
+            <div class="finestra-aggiungi">
+
+              <!-- input dettagli -->
+              <div class="input">
+
+                <!-- nome -->
+                <div class="sezione nome">
+                  <label>
+                    Inserisci il nome:
+                  </label>
+                  <input class="inserisci-nome" type="text" placeholder="Nome contatto">
+                </div>
+                <!-- fine nome -->
+
+                <!-- immagini-profilo -->
+                <h5>
+                  Scegli l'immagine profilo:
+                </h5>
+                <div class="sezione immagini-profilo">
+                  <img class="selezionata" src="img/avatar_io.jpg" alt="avatar_2">
+                  <img src="img/avatar_1.jpg" alt="avatar_3">
+                  <img src="img/avatar_2.jpg" alt="avatar_1">
+                  <img src="img/avatar_3.jpg" alt="avatar_2">
+                  <img src="img/avatar_4.jpg" alt="avatar_3">
+                  <img src="img/avatar_5.jpg" alt="avatar_1">
+                  <img src="img/avatar_6.jpg" alt="avatar_2">
+                  <img src="img/avatar_7.jpg" alt="avatar_3">
+                  <img src="img/avatar_8.jpg" alt="avatar_1">
+                  <img src="img/newAvatar_1.png" alt="avatar_1">
+                  <img src="img/newAvatar_2.png" alt="avatar_2">
+                  <img src="img/newAvatar_3.png" alt="avatar_3">
+                  <img src="img/newAvatar_4.png" alt="avatar_3">
+                  <img src="img/newAvatar_5.png" alt="avatar_3">
+                  <img src="img/newAvatar_6.png" alt="avatar_3">
+                  <img src="img/newAvatar_7.png" alt="avatar_3">
+                  <img src="img/newAvatar_8.png" alt="avatar_3">
+                  <img src="img/newAvatar_9.png" alt="avatar_3">
+                  <img src="img/newAvatar_10.png" alt="avatar_3">
+                  <img src="img/newAvatar_11.png" alt="avatar_3">
+                  <img src="img/newAvatar_12.png" alt="avatar_3">
+                  <img src="img/newAvatar_13.png" alt="avatar_3">
+                  <img src="img/newAvatar_14.png" alt="avatar_3">
+                  <img src="img/newAvatar_15.png" alt="avatar_3">
+                  <img src="img/newAvatar_16.png" alt="avatar_3">
+                  <img src="img/newAvatar_17.png" alt="avatar_3">
+                  <img src="img/newAvatar_18.png" alt="avatar_3">
+                  <img src="img/newAvatar_19.png" alt="avatar_3">
+                  <img src="img/newAvatar_20.png" alt="avatar_3">
+                </div>
+                <!-- fine immagini-profilo -->
+
+                <!-- bottoni -->
+                <div class="bottoni">
+                  <button type="button" class="btn-aggiungi">AGGIUNGI</button>
+                  <span class="btn-chiudi">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                  </span>
+                </div>
+                <!-- fine bottoni -->
+              </div>
+              <!-- fine input dettagli -->
+            </div>
+            <!-- fine finestra aggiungi-contatto -->
+
             <!-- Singola chat -->
             <div data-chat="0" class="chat active">
 
@@ -391,6 +445,7 @@
 
                 <!-- orario -->
                 <span class="orario">
+                  11.29
                   <i class="fas fa-check"></i>
                 </span>
                 <!-- fine orario -->
@@ -416,6 +471,7 @@
 
                 <!-- orario -->
                 <span class="orario">
+                  11.30
                   <i class="fas fa-check"></i>
                 </span>
                 <!-- fine orario -->
@@ -431,8 +487,22 @@
               <div class="messaggio inviato">
                 <p class="testo-messaggio">Ciao come ti chiami?</p>
 
+                <!-- freccia opzioni-messaggio -->
+                <span class="opzioni-messaggio">
+                  <i class="fas fa-chevron-down"></i>
+
+                  <!-- dropdown -->
+                  <ul class="dropdown">
+                    <li class="info-messaggio">Info messaggio</li>
+                    <li class="cancella-messaggio">Cancella messaggio</li>
+                  </ul>
+                  <!-- fine dropdown -->
+                </span>
+                <!-- fine freccia opzioni-messaggio -->
+
                 <!-- orario -->
                 <span class="orario">
+                  18.05
                   <i class="fas fa-check"></i>
                 </span>
                 <!-- fine orario -->
@@ -443,8 +513,22 @@
               <div class="messaggio">
                 <p class="testo-messaggio">Sono Fabio</p>
 
+                <!-- freccia opzioni-messaggio -->
+                <span class="opzioni-messaggio">
+                  <i class="fas fa-chevron-down"></i>
+
+                  <!-- dropdown -->
+                  <ul class="dropdown">
+                    <li class="info-messaggio">Info messaggio</li>
+                    <li class="cancella-messaggio">Cancella messaggio</li>
+                  </ul>
+                  <!-- fine dropdown -->
+                </span>
+                <!-- fine freccia opzioni-messaggio -->
+
                 <!-- orario -->
                 <span class="orario">
+                  18.07
                   <i class="fas fa-check"></i>
                 </span>
                 <!-- fine orario -->
@@ -460,8 +544,22 @@
               <div class="messaggio inviato">
                 <p class="testo-messaggio">Ciao come ti chiami?</p>
 
+                <!-- freccia opzioni-messaggio -->
+                <span class="opzioni-messaggio">
+                  <i class="fas fa-chevron-down"></i>
+
+                  <!-- dropdown -->
+                  <ul class="dropdown">
+                    <li class="info-messaggio">Info messaggio</li>
+                    <li class="cancella-messaggio">Cancella messaggio</li>
+                  </ul>
+                  <!-- fine dropdown -->
+                </span>
+                <!-- fine freccia opzioni-messaggio -->
+
                 <!-- orario -->
                 <span class="orario">
+                  15.25
                   <i class="fas fa-check"></i>
                 </span>
                 <!-- fine orario -->
@@ -472,8 +570,22 @@
               <div class="messaggio">
                 <p class="testo-messaggio">Sono Samuele</p>
 
+                <!-- freccia opzioni-messaggio -->
+                <span class="opzioni-messaggio">
+                  <i class="fas fa-chevron-down"></i>
+
+                  <!-- dropdown -->
+                  <ul class="dropdown">
+                    <li class="info-messaggio">Info messaggio</li>
+                    <li class="cancella-messaggio">Cancella messaggio</li>
+                  </ul>
+                  <!-- fine dropdown -->
+                </span>
+                <!-- fine freccia opzioni-messaggio -->
+
                 <!-- orario -->
                 <span class="orario">
+                  15.30
                   <i class="fas fa-check"></i>
                 </span>
                 <!-- fine orario -->
@@ -489,8 +601,22 @@
               <div class="messaggio inviato">
                 <p class="testo-messaggio">Ciao come ti chiami?</p>
 
+                <!-- freccia opzioni-messaggio -->
+                <span class="opzioni-messaggio">
+                  <i class="fas fa-chevron-down"></i>
+
+                  <!-- dropdown -->
+                  <ul class="dropdown">
+                    <li class="info-messaggio">Info messaggio</li>
+                    <li class="cancella-messaggio">Cancella messaggio</li>
+                  </ul>
+                  <!-- fine dropdown -->
+                </span>
+                <!-- fine freccia opzioni-messaggio -->
+
                 <!-- orario -->
                 <span class="orario">
+                  12.00
                   <i class="fas fa-check"></i>
                 </span>
                 <!-- fine orario -->
@@ -501,8 +627,22 @@
               <div class="messaggio">
                 <p class="testo-messaggio">Sono Alessandro B.</p>
 
+                <!-- freccia opzioni-messaggio -->
+                <span class="opzioni-messaggio">
+                  <i class="fas fa-chevron-down"></i>
+
+                  <!-- dropdown -->
+                  <ul class="dropdown">
+                    <li class="info-messaggio">Info messaggio</li>
+                    <li class="cancella-messaggio">Cancella messaggio</li>
+                  </ul>
+                  <!-- fine dropdown -->
+                </span>
+                <!-- fine freccia opzioni-messaggio -->
+
                 <!-- orario -->
                 <span class="orario">
+                  12.03
                   <i class="fas fa-check"></i>
                 </span>
                 <!-- fine orario -->
@@ -518,8 +658,22 @@
               <div class="messaggio inviato">
                 <p class="testo-messaggio">Ciao come ti chiami?</p>
 
+                <!-- freccia opzioni-messaggio -->
+                <span class="opzioni-messaggio">
+                  <i class="fas fa-chevron-down"></i>
+
+                  <!-- dropdown -->
+                  <ul class="dropdown">
+                    <li class="info-messaggio">Info messaggio</li>
+                    <li class="cancella-messaggio">Cancella messaggio</li>
+                  </ul>
+                  <!-- fine dropdown -->
+                </span>
+                <!-- fine freccia opzioni-messaggio -->
+
                 <!-- orario -->
                 <span class="orario">
+                  09.30
                   <i class="fas fa-check"></i>
                 </span>
                 <!-- fine orario -->
@@ -530,8 +684,22 @@
               <div class="messaggio">
                 <p class="testo-messaggio">Sono Alessandro L.</p>
 
+                <!-- freccia opzioni-messaggio -->
+                <span class="opzioni-messaggio">
+                  <i class="fas fa-chevron-down"></i>
+
+                  <!-- dropdown -->
+                  <ul class="dropdown">
+                    <li class="info-messaggio">Info messaggio</li>
+                    <li class="cancella-messaggio">Cancella messaggio</li>
+                  </ul>
+                  <!-- fine dropdown -->
+                </span>
+                <!-- fine freccia opzioni-messaggio -->
+
                 <!-- orario -->
                 <span class="orario">
+                  09.32
                   <i class="fas fa-check"></i>
                 </span>
                 <!-- fine orario -->
@@ -547,8 +715,22 @@
               <div class="messaggio inviato">
                 <p class="testo-messaggio">Ciao come ti chiami?</p>
 
+                <!-- freccia opzioni-messaggio -->
+                <span class="opzioni-messaggio">
+                  <i class="fas fa-chevron-down"></i>
+
+                  <!-- dropdown -->
+                  <ul class="dropdown">
+                    <li class="info-messaggio">Info messaggio</li>
+                    <li class="cancella-messaggio">Cancella messaggio</li>
+                  </ul>
+                  <!-- fine dropdown -->
+                </span>
+                <!-- fine freccia opzioni-messaggio -->
+
                 <!-- orario -->
                 <span class="orario">
+                  21.12
                   <i class="fas fa-check"></i>
                 </span>
                 <!-- fine orario -->
@@ -557,10 +739,24 @@
 
               <!-- messaggio -->
               <div class="messaggio">
-                <p class="testo-messaggio">Sono Claudio</p>
+                <p class="testo-messaggio">Sono Claudia</p>
+
+                <!-- freccia opzioni-messaggio -->
+                <span class="opzioni-messaggio">
+                  <i class="fas fa-chevron-down"></i>
+
+                  <!-- dropdown -->
+                  <ul class="dropdown">
+                    <li class="info-messaggio">Info messaggio</li>
+                    <li class="cancella-messaggio">Cancella messaggio</li>
+                  </ul>
+                  <!-- fine dropdown -->
+                </span>
+                <!-- fine freccia opzioni-messaggio -->
 
                 <!-- orario -->
                 <span class="orario">
+                  21.15
                   <i class="fas fa-check"></i>
                 </span>
                 <!-- fine orario -->
@@ -576,8 +772,22 @@
               <div class="messaggio inviato">
                 <p class="testo-messaggio">Ciao come ti chiami?</p>
 
+                <!-- freccia opzioni-messaggio -->
+                <span class="opzioni-messaggio">
+                  <i class="fas fa-chevron-down"></i>
+
+                  <!-- dropdown -->
+                  <ul class="dropdown">
+                    <li class="info-messaggio">Info messaggio</li>
+                    <li class="cancella-messaggio">Cancella messaggio</li>
+                  </ul>
+                  <!-- fine dropdown -->
+                </span>
+                <!-- fine freccia opzioni-messaggio -->
+
                 <!-- orario -->
                 <span class="orario">
+                  21.55
                   <i class="fas fa-check"></i>
                 </span>
                 <!-- fine orario -->
@@ -588,8 +798,22 @@
               <div class="messaggio">
                 <p class="testo-messaggio">Sono Davide</p>
 
+                <!-- freccia opzioni-messaggio -->
+                <span class="opzioni-messaggio">
+                  <i class="fas fa-chevron-down"></i>
+
+                  <!-- dropdown -->
+                  <ul class="dropdown">
+                    <li class="info-messaggio">Info messaggio</li>
+                    <li class="cancella-messaggio">Cancella messaggio</li>
+                  </ul>
+                  <!-- fine dropdown -->
+                </span>
+                <!-- fine freccia opzioni-messaggio -->
+
                 <!-- orario -->
                 <span class="orario">
+                  22.00
                   <i class="fas fa-check"></i>
                 </span>
                 <!-- fine orario -->
@@ -605,8 +829,22 @@
               <div class="messaggio inviato">
                 <p class="testo-messaggio">Ciao come ti chiami?</p>
 
+                <!-- freccia opzioni-messaggio -->
+                <span class="opzioni-messaggio">
+                  <i class="fas fa-chevron-down"></i>
+
+                  <!-- dropdown -->
+                  <ul class="dropdown">
+                    <li class="info-messaggio">Info messaggio</li>
+                    <li class="cancella-messaggio">Cancella messaggio</li>
+                  </ul>
+                  <!-- fine dropdown -->
+                </span>
+                <!-- fine freccia opzioni-messaggio -->
+
                 <!-- orario -->
                 <span class="orario">
+                  07.10
                   <i class="fas fa-check"></i>
                 </span>
                 <!-- fine orario -->
@@ -615,10 +853,24 @@
 
               <!-- messaggio -->
               <div class="messaggio">
-                <p class="testo-messaggio">Sono Federi</p>
+                <p class="testo-messaggio">Sono Federico</p>
+
+                <!-- freccia opzioni-messaggio -->
+                <span class="opzioni-messaggio">
+                  <i class="fas fa-chevron-down"></i>
+
+                  <!-- dropdown -->
+                  <ul class="dropdown">
+                    <li class="info-messaggio">Info messaggio</li>
+                    <li class="cancella-messaggio">Cancella messaggio</li>
+                  </ul>
+                  <!-- fine dropdown -->
+                </span>
+                <!-- fine freccia opzioni-messaggio -->
 
                 <!-- orario -->
                 <span class="orario">
+                  07.15
                   <i class="fas fa-check"></i>
                 </span>
                 <!-- fine orario -->
@@ -691,6 +943,33 @@
         <!-- fine orario -->
       </div>
       <!-- fine messaggio -->
+
+      <!-- singolo contatto -->
+      <li class="contatto">
+
+        <!-- avatar -->
+        <div class="avatar">
+          <img src="img/avatar_2.jpg" alt="nuovoAvatar">
+        </div>
+        <!-- fine avatar -->
+
+        <!-- credenziali -->
+        <div class="credenziali">
+          <h4 class="nome-contatto"></h4>
+          <p class="ultimo-messaggio"></p>
+        </div>
+        <!-- fine credenziali -->
+
+        <!-- orario -->
+        <span class="orario"></span>
+        <!-- fine orario -->
+      </li>
+      <!-- fine singolo contatto -->
+
+      <!-- Singola chat -->
+      <div class="chat">
+      </div>
+      <!-- Fine Singola chat -->
     </div>
     <!-- FINE TEMPLATE -->
 

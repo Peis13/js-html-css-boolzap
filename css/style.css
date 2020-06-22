@@ -9,6 +9,7 @@
 /* REGOLE STILI GENERALI LAYOUT */
 body {
   font-family: 'Lato', sans-serif;
+  font-size: 16px;
 }
 
 h4 {
@@ -52,7 +53,6 @@ img {
 /* Lato */
 [class*="lato-"] {
   height: 100%;
-  background-color: #eaeaea;
 }
 
 .lato-contatti {
@@ -69,7 +69,7 @@ img {
 /* Fine Lato */
 /* Fine Macro aree */
 
-/* Intestazioni */
+/* Intestazione */
 [class*="intestazione-"] {
   width: 100%;
   height: 70px;
@@ -80,6 +80,33 @@ img {
   justify-content: space-between;
   align-items: center;
 }
+
+[class*="intestazione-"] > .menu {
+  font-size: 1.3em;
+}
+
+[class*="intestazione-"] .info-contatto {
+  color: gray;
+  font-size: 12px;
+}
+
+.elemento-menu {
+  padding: 0 8px;
+  color: #b1b1b1;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.elemento-menu.active {
+  color: #339af0;
+}
+
+.elemento-menu:hover {
+  color: #339af0;
+  transform: scale(1.2);
+  transition: 0.2s;
+}
+/* Fine Intestazione */
 
 /* Contatto */
 .contatto {
@@ -96,44 +123,35 @@ img {
 .nome-contatto {
   text-transform: capitalize;
 }
-
-[class*="info-"] {
-  color: gray;
-}
-
-[class*="intestazione-"] .info-contatto {
-  font-size: 12px;
-}
 /* Fine Contatto */
 
-/* Menù-intestazione */
-[class*="intestazione-"] > .menu {
-  font-size: 1.3em;
+/* Focus */
+.ricerca-contatti .input input:focus {
+  border: 1px solid #339af0;
+  outline: none;
+  box-shadow:
+  1px 1px 10px 1px #339af057,
+  -1px 1px 10px 1px #339af057,
+  1px -1px 10px 1px #339af057,
+  -1px -1px 10px 1px #339af057;
 }
 
-.elemento-menu {
-  padding: 0 8px;
-  color: #b1b1b1;
-  display: inline-block;
+.input-messaggio input:focus,
+.finestra-aggiungi .input .inserisci-nome:focus {
+  border: 1px solid #009688;
+  outline: none;
+  box-shadow:
+  1px 1px 10px 1px #00968842,
+  -1px 1px 10px 1px #00968842,
+  1px -1px 10px 1px #00968842,
+  -1px -1px 10px 1px #00968842;
 }
-
-.elemento-menu.active {
-  color: #339af0;
-}
-
-.elemento-menu:hover {
-  color: #339af0;
-  cursor: pointer;
-  transform: scale(1.2);
-  transition: 0.2s;
-}
-/* Fine Menù-intestazione */
-/* Fine Intestazioni */
+/* Fine Focus */
 
 /* Scrollbar */
 /* width */
 ::-webkit-scrollbar {
-  width: 7px;
+  width: 5px;
 }
 
 /* Handle */
@@ -151,11 +169,6 @@ img {
   background-color: #f3eeea;
 }
 /* Fine Scrollbar */
-
-.input {
-  height: 100%;
-  background-color: #fff;
-}
 /* FINE REGOLE STILI GENERALI LAYOUT */
 
 /* LATO-CONTATTI */
@@ -169,7 +182,7 @@ img {
   align-items: center;
 }
 
-.miniatura {
+.notifiche .icona {
   min-width: 50px;
   height: 50px;
   line-height: 50px;
@@ -186,6 +199,7 @@ img {
 }
 
 .info-notifiche {
+  color: gray;
   font-size: 13px;
 }
 /* Fine Notifiche */
@@ -197,6 +211,7 @@ img {
   flex-grow: 1;
   max-height: calc(100% - 70px - 80px); /* NOTE: Altezza massima (100% del lato-contatti - intestazione - notifiche) */
   background-color: yellow;
+  position: relative;
 }
 
 /* ricerca contatti */
@@ -208,6 +223,7 @@ img {
 }
 
 .ricerca-contatti .input {
+  height: 100%;
   padding: 0 0 0 20px;
   display: flex;
   align-items: center;
@@ -251,39 +267,71 @@ img {
   position: relative;
 }
 
-.lista-contatti > .contatto.active {
-  background-color: #d6d6d6;
-}
 
 .lista-contatti > .contatto:hover {
   cursor: pointer;
   background-color: #e9ebeb;
 }
 
-.lista-contatti > .contatto:hover .avatar,
-.lista-contatti > .contatto:hover .nome-contatto {
+.lista-contatti > .contatto.active {
+  background-color: #e0e0e0;
+}
+
+.lista-contatti > .contatto:hover .avatar {
   transform: scale(1.1);
   transition: 0.2s;
 }
 
-.lista-contatti .info-contatto {
+.lista-contatti .ultimo-messaggio {
+  color: #b1b1b1;
   font-size: 13px;
 }
 
 .lista-contatti > .contatto .orario {
   font-size: 11px;
-  color: lightgray;
+  color: #b1b1b1;
   position: absolute;
   top: 10px;
   right: 10px;
 }
 /* fine lista contatti */
+
+/* aggiungi nuovo contatto */
+#aggiungi {
+  z-index: 1;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  position: absolute;
+  bottom: 0px;
+  right: 20px;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #009688;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  opacity: 0.7;
+  transition: 0.3s;
+}
+
+#aggiungi:hover {
+  height: 40px;
+  line-height: 25px;
+  font-size: 25px;
+  opacity: 1;
+}
+/* fine aggiungi nuovo contatto */
 /* Fine Contatti */
 /* FINE LATO-CONTATTI */
 
 /* LATO-CHAT */
 /* Chat */
 .finestra-chat {
+  box-shadow: 0px 20px 30px -20px grey inset;
   width: 100%;
   height: calc(100% - 70px - 70px); /* NOTE: Altezza (100% del lato-chat - intestazione - toolbar) */
   background-image: url(../img/mine.jpg);
@@ -304,6 +352,108 @@ img {
 }
 /* Fine Chat */
 
+/* Finestra aggiungi */
+/* NOTE: layout */
+.finestra-aggiungi {
+  display: none;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  padding: 50px;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.finestra-aggiungi.visibile {
+  display: block;
+}
+
+.finestra-aggiungi .input {
+  height: 100%;
+  padding: 30px;
+  background-color: #fff;
+  position: relative;
+}
+
+.finestra-aggiungi .input .sezione {
+  margin-bottom: 10%;
+}
+
+.finestra-aggiungi label,
+.finestra-aggiungi h5 {
+  display: block;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* NOTE: nome */
+.finestra-aggiungi .input .inserisci-nome {
+  font-size: 18px;
+  padding: 5px;
+  border: none;
+  border-bottom: 2px solid #009688;
+}
+
+/* NOTE: immagini-profilo */
+.finestra-aggiungi .input .immagini-profilo {
+  height: 60%;
+  padding: 10px;
+  overflow-y: auto;
+  border: 2px solid lightgray;
+}
+
+.finestra-aggiungi .input .immagini-profilo img {
+  width: calc((100% / 4) - 7%);
+  height: auto;
+  margin: 3%;
+  cursor: pointer;
+}
+
+.finestra-aggiungi .input .immagini-profilo img.selezionata {
+  transform: scale(1.1);
+  box-shadow:
+  1px 1px 10px 1px #0096886e,
+  -1px 1px 10px 1px #0096886e,
+  1px -1px 10px 1px #0096886e,
+  -1px -1px 10px 1px #0096886e;
+}
+
+/* NOTE: bottoni */
+.finestra-aggiungi .input .bottoni {
+  text-align: center;
+}
+
+.finestra-aggiungi .input .btn-aggiungi {
+  font-size: 16px;
+  padding: 8px 15px;
+  cursor: pointer;
+  color: #fff;
+  background-color: #009688;
+  border: none;
+  border-radius: 5px;
+}
+
+.finestra-aggiungi .input .btn-chiudi {
+  color: gray;
+  font-size: 18px;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+/* NOTE: hover */
+.finestra-aggiungi .input .btn-aggiungi:hover,
+.finestra-aggiungi .input .btn-chiudi:hover {
+  opacity: 0.7;
+  transform: scale(1.1);
+  transition: 0.2s;
+}
+/* Fine Finestra aggiungi */
+
 /* Toolbar */
 .toolbar {
   width: 100%;
@@ -311,10 +461,10 @@ img {
   padding: 10px 30px;
   position: absolute;
   bottom: 0;
-  background-color: #f3eeea;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: #f3eeea;
 }
 
 .toolbar i {
@@ -330,13 +480,14 @@ img {
 }
 
 .input-messaggio {
-  flex-basis: 80%;
   height: 100%;
+  flex-basis: 80%;
 }
 
 .input-messaggio input {
   width: 100%;
   height: 100%;
+  font-size: 20px;
   padding: 0 10px;
   border: none;
   border-radius: 5px;
@@ -344,6 +495,8 @@ img {
 
 [class*="invio-"] {
   display: none;
+  width: 20px;
+  text-align: right;
 }
 
 [class*="invio-"].active {
@@ -359,12 +512,12 @@ img {
 
 /* Messaggio */
 .messaggio {
-  display: inline-block;
   max-width: 70%;
   padding: 8px 10px;
   padding-right: 70px;
   margin: 0 0 20px 20px;
   border-radius: 5px;
+  display: inline-block;
   color: #000;
   background-color: #fff;
   float: left;
@@ -378,10 +531,13 @@ img {
 }
 
 .messaggio .opzioni-messaggio {
-  display: inline-block;
-  cursor: pointer;
   font-size: 18px;
   padding-bottom: 5px;
+  cursor: pointer;
+  display: inline-block;
+  position: absolute;
+  top: 0px;
+  right: 10px;
   color: gray;
   background-color: inherit;
   opacity: 0;
@@ -390,12 +546,9 @@ img {
   -1px 1px 3px 1px #fff,
   1px -1px 3px 1px #fff,
   -1px -1px 3px 1px #fff;
-  position: absolute;
-  top: 0px;
-  right: 10px;
 }
 
-.messaggio:hover .opzioni-messaggio {
+.messaggio:hover .opzioni-messaggio { /* NOTE: hover */
   z-index: 1;
   top: 5px;
   right: 10px;
@@ -409,36 +562,6 @@ img {
   right: 10px;
   opacity: 1;
 }
-
-/* dropdown */
-.messaggio .dropdown {
-  display: none;
-  z-index: 1;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  white-space: nowrap;
-  background-color: #fff;
-  box-shadow:
-  1px 1px 10px 1px rgba(0, 0, 0, 0.1),
-  -1px 1px 10px 1px rgba(0, 0, 0, 0.1),
-  1px -1px 10px 1px rgba(0, 0, 0, 0.1),
-  -1px -1px 10px 1px rgba(0, 0, 0, 0.1);
-}
-.messaggio .dropdown.visibile {
-  display: block;
-}
-
-.messaggio .dropdown li {
-  font-size: 15px;
-  padding: 10px 15px;
-}
-
-.messaggio .dropdown li:hover {
-  cursor: pointer;
-  background-color: #e9ebeb;
-}
-/* fine dropdown */
 
 .messaggio .orario {
   color: gray;
@@ -472,9 +595,275 @@ img {
   margin-left: 5px;
 }
 
+/* dropdown */
+.messaggio .dropdown {
+  display: none;
+  z-index: 1;
+  white-space: nowrap;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  box-shadow:
+  1px 1px 10px 1px rgba(0, 0, 0, 0.1),
+  -1px 1px 10px 1px rgba(0, 0, 0, 0.1),
+  1px -1px 10px 1px rgba(0, 0, 0, 0.1),
+  -1px -1px 10px 1px rgba(0, 0, 0, 0.1);
+}
+
 .messaggio.inviato .dropdown {
   left: auto;
   right: 0;
 }
+
+.messaggio .dropdown.visibile {
+  display: block;
+}
+
+.messaggio .dropdown li {
+  font-size: 15px;
+  padding: 10px 15px;
+}
+
+.messaggio .dropdown li:hover {
+  cursor: pointer;
+  background-color: #e9ebeb;
+}
+/* fine dropdown */
 /* Fine Messaggio */
 /* FINE TEMPLATE */
+
+/* MODALITA' NOTTURNA */
+/* Stile bottone */
+.modalita-notte {
+  color: #fff22a;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.modalita-notte.active {
+  color: #fff22a;
+}
+
+.modalita-notte:hover {
+  color: darkgreen;
+  text-shadow: 0 0 30px darkgreen;
+}
+
+.wrapper-gradient.notte .modalita-notte {
+  color: darkgreen;
+  text-shadow: -1px 0 #fff, 0 1px #fff, 1px 0 #fff, 0 -1px #fff;
+}
+
+.wrapper-gradient.notte .modalita-notte.active {
+  color: darkgreen;
+}
+
+.wrapper-gradient.notte .modalita-notte:hover {
+  color: #fff22a;
+  text-shadow: 0 0 30px #fff22a;
+}
+/* Fine Stile bottone */
+
+/* Macro aree */
+.wrapper-gradient.notte {
+  background: linear-gradient(180deg, rgba(0,150,136,1) 0%, rgba(23,46,52,1) 30%);
+}
+
+/* Lato */
+.wrapper-gradient.notte .lato-contatti {
+  border-right: 1px solid #041d24;
+}
+/* Fine Macro aree */
+
+/* Intestazioni */
+.wrapper-gradient.notte [class*="intestazione-"] {
+  background-color: #172e34;
+}
+
+.wrapper-gradient.notte [class*="intestazione-"] .info-contatto {
+  color: #fff;
+}
+/* Fine Intestazioni */
+
+/* Contatto */
+.wrapper-gradient.notte .contatto {
+  color: #fff;
+}
+
+/* Focus */
+.wrapper-gradient.notte .input-messaggio input:focus,
+.wrapper-gradient.notte .finestra-aggiungi .input .inserisci-nome:focus {
+  background-color: #041d24;
+}
+/* Fine Focus */
+/* FINE REGOLE STILI GENERALI LAYOUT */
+
+/* LATO-CONTATTI */
+/* Notifiche */
+.wrapper-gradient.notte .notifiche {
+  background-color: #00b0ff;
+}
+
+.wrapper-gradient.notte .notifiche i {
+  color: #00b0ff;
+}
+
+.wrapper-gradient.notte .info-notifiche {
+  color: #acb7bb;
+}
+/* Fine Notifiche */
+
+/* Contatti */
+/* ricerca contatti */
+.wrapper-gradient.notte .ricerca-contatti {
+  background-color: #041d24;
+}
+
+.wrapper-gradient.notte .ricerca-contatti .input {
+  border: none;
+  background-color: #172e34;
+}
+
+.wrapper-gradient.notte .ricerca-contatti .input input {
+  color: #fff;
+  background-color: #172e34;
+}
+/* fine ricerca contatti */
+
+/* lista contatti */
+.wrapper-gradient.notte .lista-contatti {
+  background-color: #041d24;
+}
+
+.wrapper-gradient.notte .lista-contatti > .contatto {
+  border-bottom: 1px solid #172e34;
+  background-color: #041d24;
+}
+
+.wrapper-gradient.notte .lista-contatti > .contatto:hover {
+  background-color: #172e34;
+}
+
+.wrapper-gradient.notte .lista-contatti > .contatto.active {
+  background-color: #172e34;
+}
+/* fine lista contatti */
+/* Fine Contatti */
+/* FINE LATO-CONTATTI */
+
+/* LATO-CHAT */
+/* Chat */
+.wrapper-gradient.notte .finestra-chat {
+  box-shadow: 0px 20px 30px -20px #285152 inset;
+  background-image: url(../img/chat-notte.png);
+  background-size: 300%;
+}
+/* Fine Chat */
+
+/* Finestra aggiungi */
+/* NOTE: layout */
+.wrapper-gradient.notte .finestra-aggiungi {
+  color: #fff;
+}
+
+.wrapper-gradient.notte .finestra-aggiungi .input {
+  background: #172e34;
+}
+
+/* NOTE: nome */
+.wrapper-gradient.notte
+.finestra-aggiungi .input .inserisci-nome {
+  color: #fff;
+  background-color: #172e34;
+}
+
+/* NOTE: immagini-profilo */
+.wrapper-gradient.notte
+.finestra-aggiungi .input .immagini-profilo {
+  border: 2px solid #009688;
+}
+
+.wrapper-gradient.notte
+.finestra-aggiungi .input .immagini-profilo img.selezionata {
+  box-shadow:
+  1px 1px 10px 1px #009688,
+  -1px 1px 10px 1px #009688,
+  1px -1px 10px 1px #009688,
+  -1px -1px 10px 1px #009688;
+}
+
+/* NOTE: hover bottoni */
+.wrapper-gradient.notte
+.finestra-aggiungi .input .btn-aggiungi:hover {
+  opacity: 1;
+  background-color: #00b9a8;
+}
+/* Fine Finestra aggiungi */
+
+/* Toolbar */
+.wrapper-gradient.notte .toolbar {
+  background-color: #041d24;
+}
+
+.wrapper-gradient.notte .toolbar i {
+  color: #acb7bb;
+}
+
+.wrapper-gradient.notte .toolbar i:hover {
+  color: #2acabb;
+}
+
+.wrapper-gradient.notte .input-messaggio input {
+  color: #fff;
+  border: 1px solid #009688;
+  background-color: #172e34;
+}
+/* Fine Toolbar */
+/* FINE LATO-CHAT */
+
+/* TEMPLATE */
+/* Messaggio */
+.wrapper-gradient.notte .messaggio {
+  color: #fff;
+  background-color: #172e34;
+}
+
+.wrapper-gradient.notte .messaggio .opzioni-messaggio {
+  color: #acb7bb;
+  box-shadow:
+  1px 1px 3px 1px #172e34,
+  -1px 1px 3px 1px #172e34,
+  1px -1px 3px 1px #172e34,
+  -1px -1px 3px 1px #172e34;
+}
+
+.wrapper-gradient.notte .messaggio .orario {
+  color: #acb7bb;
+}
+
+/* NOTE: messaggio inviato */
+.wrapper-gradient.notte .messaggio.inviato {
+  background-color: #009688;
+}
+
+.wrapper-gradient.notte .messaggio.inviato .opzioni-messaggio {
+  box-shadow:
+  1px 1px 3px 1px #009688,
+  -10px 1px 3px 1px #009688,
+  1px -1px 3px 1px #009688,
+  -1px -1px 3px 1px #009688;
+}
+
+/* dropdown */
+.wrapper-gradient.notte .messaggio .dropdown {
+  color: #acb7bb;
+  background-color: #172e34;
+}
+
+.wrapper-gradient.notte .messaggio .dropdown li:hover {
+  background-color: #041d24;
+}
+/* fine dropdown */
+/* Fine Messaggio */
+/* FINE TEMPLATE */
+/* FINE MODALITA' NOTTURNA */
